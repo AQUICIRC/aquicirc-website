@@ -68,3 +68,26 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 
 /* Left-aligned collection intros (spec §7.3); v2 centres them. */
 section.collection > .container.small { text-align: start; max-width: var(--measure-wide); }
+
+/* Data tables: sticky headers; stacked cards when the frame is narrow (guide responsive-table). */
+.datatable-frame { container-type: inline-size; overflow: auto; max-height: 80vh; border: 1px solid var(--borderLight); border-radius: var(--radius-s); }
+.datatable { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 0.95rem; }
+/* The section heading names the table on screen; the caption names it for assistive tech. */
+.datatable caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.datatable th, .datatable td { text-align: start; vertical-align: top; padding: 0.6rem 1rem; border-block-end: 1px solid var(--borderLight); }
+.datatable thead th { position: sticky; top: 0; z-index: 2; background: var(--page); font-family: var(--fontTitles); }
+.datatable tbody th { position: sticky; inset-inline-start: 0; z-index: 1; background: var(--page); font-family: var(--fontTitles); font-weight: 600; }
+.datatable .cell-label { display: none; }
+@container (width < 600px) {
+    .datatable thead { display: none; }
+    .datatable, .datatable tbody, .datatable tr, .datatable th, .datatable td { display: block; }
+    .datatable tr { padding-block: 0.5rem; border-block-end: 1px solid var(--borderMedium); }
+    .datatable tbody th { position: static; border: 0; }   /* flows with the page on phones */
+    .datatable td { border: 0; padding-block: 0.2rem; }
+    .datatable .cell-label { display: block; font-family: var(--fontTitles); font-size: 0.8rem; color: var(--textMedium); }
+}
+
+section.sitecompare { padding-block: var(--brick-space); }
+/* Stacked tables on phones flow with the page: no nested scroll box. (A container
+   query cannot style the container itself, so this is a media query.) */
+@media (width < 44rem) { .datatable-frame { max-height: none; overflow: visible; } }

@@ -1,0 +1,26 @@
+{{- /* Brick: sitecompare — proposal Table 1 from site front matter (spec §6.5). */ -}}
+{{- $label := partial "section_label.html" .Content -}}
+{{- $sites := partial "sites-by-latitude.html" .Page -}}
+{{- $cols := slice "Country" "Climate" "Aquifer" "MAR system" "Expected contaminants" -}}
+<section class="sitecompare"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
+  <div class="container">
+    {{ .Content }}
+    <div class="datatable-frame" role="region" aria-labelledby="sitecompare-caption" tabindex="0">
+      <table class="datatable">
+        <caption id="sitecompare-caption">The six case-study sites compared</caption>
+        <thead><tr><th scope="col">Site</th>{{ range $cols }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+        <tbody>
+          {{- range $sites -}}
+          {{- $vals := slice .Params.country .Params.climate .Params.aquifer .Params.mar_system (delimit (.Params.expected_cecs | default slice) ", ") -}}
+          <tr>
+            <th scope="row"><a href="{{ .RelPermalink }}">{{ .Title }}</a></th>
+            {{- range $i, $v := $vals -}}
+            <td><span class="cell-label" aria-hidden="true">{{ index $cols $i }}</span>{{ $v }}</td>
+            {{- end -}}
+          </tr>
+          {{- end -}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
