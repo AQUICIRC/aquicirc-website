@@ -109,3 +109,6 @@ ul.partnerstrip li { font-family: var(--fontTitles); font-size: 0.95rem; }
 ul.partnerstrip a { display: inline-flex; align-items: center; min-height: 2.75rem; }
 ul.partnerstrip img { height: 2.5rem; width: auto; filter: grayscale(1); }
 ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }
+
+/* Focus on the navy footer: v2's darker accent ring is ~2:1 there; cyan clears 3:1. */
+.sitefooter.dark :focus-visible { outline-color: var(--recharge); }

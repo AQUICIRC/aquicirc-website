@@ -2,7 +2,7 @@
 section.transect { background: var(--porewater); padding-block: var(--brick-space); }
 section.transect .container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 3rem; align-items: start; }
 
-.transect-figure { --h: 46rem; --x: 4.5rem; position: relative; height: var(--h); margin: 0; view-timeline-name: --transect; }
+.transect-figure { --h: 46rem; --x: 4.5rem; position: relative; height: var(--h); margin: 0; overflow: visible; view-timeline-name: --transect; }   /* v2 clips figures; the reveals must not be */
 .transect-meridian { position: absolute; left: var(--x); top: 2%; bottom: 2%; width: 2px; background: var(--flow); }
 .transect-break {
     position: absolute; left: 0; right: 0; top: 73%; height: 8%; margin: 0;
@@ -14,15 +14,18 @@ section.transect .container { display: grid; grid-template-columns: minmax(0, 1f
 }
 .transect-break::before { top: 0; } .transect-break::after { bottom: 0; }
 .transect-ticks { list-style: none; margin: 0; padding: 0; }
+.transect-ticks li, .transect-sites li { margin: 0; }   /* v2 spaces `li + li`; absolute items must not move */
 .transect-ticks li {
     position: absolute; left: 0; top: calc(var(--y) * 1%); width: calc(var(--x) - 0.5rem);
-    translate: 0 -50%; font-size: 0.8rem; color: var(--textMedium); text-align: end;
+    translate: 0 -100%; font-size: 0.8rem; color: var(--textMedium); text-align: end;   /* label sits on its line: the hairline is at the latitude */
     font-variant-numeric: tabular-nums; padding-inline-end: 0.5rem;
     border-block-end: 1px solid var(--borderLight);
 }
 .transect-sites { list-style: none; margin: 0; padding: 0; }
+/* The dot lives inside the link (so clicking it follows the link), positioned
+   back onto the meridian at its own latitude, relative to the label. */
 .transect-sites .dot {
-    position: absolute; left: calc(var(--x) - 5px); top: calc(var(--dot) * 1%); translate: 0 -50%;
+    position: absolute; left: calc(-1.5rem - 5px); top: calc((var(--dot) - var(--label)) * var(--h) / 100 + 0.8rem); translate: 0 -50%;
     width: 12px; height: 12px; border-radius: 50%; background: var(--flow);
     box-shadow: 0 0 0 2px var(--surface-ring); z-index: 1;
 }
@@ -42,6 +45,7 @@ section.transect .container { display: grid; grid-template-columns: minmax(0, 1f
 .site-name { font-family: var(--fontTitles); font-weight: 650; }
 .site-meta { font-size: 0.9rem; color: var(--textMedium); }
 .transect-sites .reveal {
+    position: absolute; top: 100%; left: 0.5rem; z-index: 3;   /* out of flow: no invisible hover zone */
     margin-block-start: 0.35rem; padding: 0.5rem 0.75rem; max-width: 34ch;
     background: var(--page); border: 1px solid var(--borderMedium); border-radius: var(--radius-s); font-size: 0.9rem;
 }

@@ -22,6 +22,9 @@
       <ol class="transect-sites">
         {{- range $i, $p := $sites -}}
           {{- $lat := float (index (index $p.Params.coordinates 0) 0) -}}
+          {{- if not (or (and (ge $lat 35.0) (le $lat 53.0)) (and (ge $lat -35.0) (le $lat -33.0))) -}}
+            {{- errorf "site %q: latitude %v is outside the transect (35–53°N or 33–35°S); coordinates are [lat, lon] — are they swapped?" $p.File.Path $lat -}}
+          {{- end -}}
           {{- $dot := 0.0 -}}
           {{- if ge $lat 0.0 -}}
             {{- $dot = add 2.0 (mul (sub 53.0 $lat) (div 66.0 18.0)) -}}
@@ -32,9 +35,9 @@
           {{- $prevLabel = $lab -}}
           {{- $slug := $p.File.ContentBaseName -}}
           <li data-reveal style="--dot: {{ printf "%.4f" $dot }}; --label: {{ printf "%.4f" $lab }}; --i: {{ $i }}">
-            <span class="dot" aria-hidden="true"></span>
             <span class="leader" aria-hidden="true"></span>
             <a href="{{ $p.RelPermalink }}">
+              <span class="dot" aria-hidden="true"></span>
               <span class="site-name" style="view-transition-name: site-{{ $slug }}">{{ $p.Title }}</span>
               <span class="site-meta">{{ $p.Params.country }}. {{ $p.Params.climate }}</span>
               <span class="reveal">{{ $p.Params.mar_system }}. Source water: {{ $p.Params.source_water }}.</span>

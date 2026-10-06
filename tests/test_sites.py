@@ -1,4 +1,6 @@
-NORTH_TO_SOUTH = ["lieshout", "kinrooi", "besos", "llobregat", "wadi-khairat", "cape-town"]
+from sitedata import EXPECTED
+
+NORTH_TO_SOUTH = list(EXPECTED)   # derived from front matter, north → south
 
 
 def test_every_site_page_builds_with_facts(html):
@@ -11,11 +13,11 @@ def test_every_site_page_builds_with_facts(html):
 
 
 def test_previous_next_follow_latitude(html):
-    nav = html("/sites/besos/").select_one("nav.sitenav")
-    links = {a["rel"][0]: a["href"] for a in nav.find_all("a")}
-    assert links["prev"] == "/sites/kinrooi/" and links["next"] == "/sites/llobregat/"
-    first = html("/sites/lieshout/").select_one("nav.sitenav")
-    assert first.find("a", rel="prev") is None
+    for i, slug in enumerate(NORTH_TO_SOUTH):
+        nav = html(f"/sites/{slug}/").select_one("nav.sitenav")
+        links = {a["rel"][0]: a["href"] for a in nav.find_all("a")}
+        assert links.get("prev") == (f"/sites/{NORTH_TO_SOUTH[i - 1]}/" if i else None)
+        assert links.get("next") == (f"/sites/{NORTH_TO_SOUTH[i + 1]}/" if i + 1 < len(NORTH_TO_SOUTH) else None)
 
 
 def test_partners_link_to_consortium(html):

@@ -1,4 +1,5 @@
 ---
+summary: "AQUICIRC studies how treated wastewater, industrial effluent and harvested rainwater can safely recharge aquifers, at six sites from the Netherlands to South Africa."
 title: Home
 ---
 

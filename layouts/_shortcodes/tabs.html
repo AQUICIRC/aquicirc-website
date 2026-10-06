@@ -58,7 +58,7 @@
     {{- end -}}
     </div>
     {{- range $i, $part := $parts }}
-    <section role="tabpanel" id="tabpanel-{{ $ordinal }}-{{ $i }}" aria-labelledby="tab-{{ $ordinal }}-{{ $i }}" tabindex="0"{{ if $i }} hidden="until-found"{{ end }}>
+    <section role="tabpanel" id="tabpanel-{{ $ordinal }}-{{ $i }}" aria-labelledby="tab-{{ $ordinal }}-{{ $i }}" tabindex="{{ if $i }}-1{{ else }}0{{ end }}"{{ if $i }} hidden="until-found"{{ end }}>
         {{ markdownify $part }}
     </section>
     {{- end }}

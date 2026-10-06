@@ -1,4 +1,5 @@
 ---
+summary: "The ten AQUICIRC partner institutions in six countries, the team and the project advisory board."
 title: Consortium
 ---
 

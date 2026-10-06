@@ -1,3 +1,8 @@
+from pathlib import Path
+
+import yaml
+
+
 def test_workpackages_flow(html):
     doc = html("/about/")
     seq = [d["id"] for d in doc.select("section.workpackages ol.wp-sequence details")]
@@ -24,7 +29,7 @@ def test_timeline_bars_positions(html):
 
 def test_timeline_milestones_and_today(html):
     doc = html("/about/")
-    assert len(doc.select("section.timeline a.milestone")) == 19
+    assert len(doc.select("section.timeline a.milestone")) == len(yaml.safe_load((Path(__file__).resolve().parents[1] / "data/en/deliverables.yaml").read_text()))
     today = doc.select_one("section.timeline .today")
     assert today.has_attr("hidden") and today["data-start"] == "2026-01-01" and today["data-months"] == "36"
 

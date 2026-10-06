@@ -1,7 +1,7 @@
-/* The `tabs` shortcode. `site.js` marks a widget `ready` when it has wired
-   the buttons; until then — and without javascript at all — the tablist
-   stays hidden and the panels simply stack under their own headings, so
-   nothing is behind a control that does not work. */
+/* The `tabs` shortcode. AQUICIRC: the shortcode renders the widget already
+   `ready` (tablist shown, later panels hidden="until-found") so nothing
+   shifts when `site.js` wires it; without javascript a <noscript> style in
+   the shortcode hides the tablist and stacks the panels again. */
 
 .tabs > [role="tablist"] {
     display: none;

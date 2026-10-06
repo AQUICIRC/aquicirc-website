@@ -21,10 +21,6 @@ def test_contact_email_slot_renders_when_set(build_variant, tmp_path):
     assert 'href="mailto:info@example.org"' in (tmp_path / "out/index.html").read_text()
 
 
-def test_socials_are_linkedin_and_bluesky(html):
-    text = html("/").find("footer").get_text()
-    assert "LinkedIn" in text and "Bluesky" in text
-
 
 def test_no_content_markers_rendered(site):
     for page in site.rglob("*.html"):

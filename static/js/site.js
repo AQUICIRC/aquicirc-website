@@ -213,11 +213,11 @@
     }
 
     /* -- tabs ----------------------------------------------------------
-       The `tabs` shortcode. The markup is complete without this file — the
-       panels stack under their own headings and the tablist stays hidden.
-       Wiring it marks the widget `ready`, which is what shows the tablist
-       and collapses the stack to the selected panel. Arrow keys move along
-       the tabs with the roving tabindex the ARIA pattern asks for. */
+       The `tabs` shortcode. AQUICIRC: the markup arrives collapsed (`ready`,
+       later panels hidden="until-found", tabindex -1); this wires the
+       buttons, keeps panel tabindex in step, and opens the tab whose panel
+       in-page search matched (`beforematch`). Arrow keys move along the tabs
+       with the roving tabindex the ARIA pattern asks for. */
     Array.prototype.forEach.call(document.querySelectorAll(".tabs"), function (widget) {
         var tabs = widget.querySelectorAll("[role='tab']");
         var panels = widget.querySelectorAll("[role='tabpanel']");
@@ -227,6 +227,7 @@
             Array.prototype.forEach.call(tabs, function (tab, i) {
                 tab.setAttribute("aria-selected", i === chosen ? "true" : "false");
                 tab.tabIndex = i === chosen ? 0 : -1;
+                panels[i].tabIndex = i === chosen ? 0 : -1;   /* hidden-until-found panels stay focusable otherwise */
                 if (i === chosen) panels[i].removeAttribute("hidden");
                 else panels[i].setAttribute("hidden", "until-found");
             });

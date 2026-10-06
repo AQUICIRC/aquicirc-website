@@ -10,10 +10,10 @@
   </summary>
   <div class="wp-body">
     <p>{{ $wp.summary }}</p>
-    <h4>Tasks</h4>
+    <h3>Tasks</h3>
     <ul>{{ range $wp.tasks }}<li><strong>{{ .id }}</strong> {{ .title }}, {{ partial "quarter.html" .start }} to {{ partial "quarter.html" .end }}</li>{{ end }}</ul>
     {{ with where $d.deliverables "wp" $wp.id }}
-    <h4>Deliverables</h4>
+    <h3>Deliverables</h3>
     <ul>{{ range . }}<li><strong>{{ .id }}</strong> {{ .title }}, due {{ partial "quarter.html" .due }}</li>{{ end }}</ul>
     {{ end }}
   </div>

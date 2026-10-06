@@ -1,9 +1,6 @@
 import re
+from sitedata import EXPECTED
 
-EXPECTED = {
-    "lieshout": (7.43, 7.43), "kinrooi": (8.78, 18.43), "besos": (44.39, 44.39),
-    "llobregat": (44.61, 55.39), "wadi-khairat": (63.86, 66.39), "cape-town": (87.99, 87.99),
-}
 
 
 def items(doc):
@@ -21,7 +18,7 @@ def test_sites_in_north_to_south_order(html):
 
 def test_positions_and_label_spacing(html):
     labels = []
-    assert len(items(html("/sites/"))) == 6
+    assert len(items(html("/sites/"))) == len(EXPECTED)
     for li in items(html("/sites/")):
         slug = li.a["href"].strip("/").split("/")[-1]
         dot, label = var(li["style"], "dot"), var(li["style"], "label")
@@ -36,7 +33,7 @@ def test_multi_coordinate_site_appears_once(html):
 
 
 def test_view_transition_names_match_site_pages(html):
-    assert len(items(html("/"))) == 6
+    assert len(items(html("/"))) == len(EXPECTED)
     for li in items(html("/")):
         slug = li.a["href"].strip("/").split("/")[-1]
         assert li.select_one(".site-name")["style"] == f"view-transition-name: site-{slug}"

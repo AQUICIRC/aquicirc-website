@@ -1,4 +1,5 @@
 ---
+summary: "The six AQUICIRC case-study sites, from Lieshout in the Netherlands to Atlantis and Cape Flats in South Africa, compared."
 title: Case studies
 ---
 

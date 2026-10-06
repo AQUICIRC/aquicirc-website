@@ -1,4 +1,5 @@
 ---
+summary: "News from the AQUICIRC case-study sites, stakeholder workshops and labs."
 title: News
 ---
 

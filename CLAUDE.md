@@ -68,3 +68,11 @@ would be required for core functionality, redesign instead.
 - `static/js/site.js`: timeline "today" marker.
 - `static/js/site.js`: inactive tab panels use `hidden="until-found"`; `beforematch` selects the tab.
 - `static/css/sections/wide.css`: page h1 left-aligned (was centred).
+- `layouts/_shortcodes/tabs.html`: renders `ready` with later panels `hidden="until-found"` and `tabindex="-1"`; `<noscript>` style restacks them without JS. `static/css/tabs.css` comment updated.
+- `layouts/_partials/site/logo.html`: raster logo resized to a 96px-wide webp.
+- `layouts/_partials/teaser_list.html`: "Read more" links carry the post title (sr-only).
+- `layouts/_partials/site/styles.html`: per-page bundle — core + only the brick CSS the page uses (from `section_map.html`; `site`/`post`+`cta` for the whole-page layouts). Styles for things placed by shortcodes into plain sections (partner strip, data tables) must live in `aquicirc.css`, not a brick file.
+- `layouts/baseof.html`: second preload (Source Serif 4 latin).
+- `data/settings.yaml`: `favicon_image` removed (it shipped the 139 kB logo as favicon).
+- `static/css/sections/transect.css` etc. are AQUICIRC files, not upstream.
+- Post front matter uses `case_sites`; Archivo is pinned by `scripts/instance-archivo.py`.
