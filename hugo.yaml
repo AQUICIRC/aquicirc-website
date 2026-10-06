@@ -1,5 +1,5 @@
 # Overridden at build time by the Pages workflow (--baseURL).
-baseURL: https://aquicirc.github.io/aquicirc-website/
+baseURL: https://aquicirc.eu/
 defaultContentLanguage: en
 
 # The stylesheet is authored under `static/css/`, so that is where Hugo Pipes

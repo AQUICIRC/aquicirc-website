@@ -13,9 +13,7 @@ apply.
   Changes vs upstream: Usecue CMS `home.json` output and its iframe-monitor script removed.
 - Repo `AQUICIRC/aquicirc-website` is **public** (decided deliberately: static site, no
   secrets; open-science fit). GitHub Pages via Actions. Custom domain from GoDaddy.
-- Templates use root-relative paths (`/css/…`), so the site only renders correctly at a
-  domain root — the `aquicirc.github.io/aquicirc-website/` URL looks unstyled until the
-  custom domain is set.
+- Custom domain **aquicirc.eu** (apex primary; www CNAME → aquicirc.github.io), verified for the org.
 - Not derived from the Project GROW website repo; GROW was only a reference for page types.
 
 ## Decisions taken
