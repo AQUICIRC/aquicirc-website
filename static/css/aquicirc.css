@@ -116,3 +116,13 @@ ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }
 .leaflet-container .leaflet-popup-content strong { font-family: var(--fontTitles); font-weight: 650; display: block; margin-block-end: 0.25rem; }
 .leaflet-container .leaflet-popup-content p { margin: 0 0 0.5rem; }
 .leaflet-container .leaflet-popup-content a { color: var(--flow); font-family: var(--fontTitles); font-weight: 600; }
+
+/* Map gesture hint (static/js/map.js) */
+.leaflet-container .map-hint {
+    position: absolute; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 1rem;
+    background: rgb(15 42 63 / 0.6); color: #fff; text-align: center;
+    font-family: var(--fontTitles); font-weight: 650; font-size: 1.05rem;
+    opacity: 0; pointer-events: none;
+}
+.leaflet-container .map-hint.shown { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) { .leaflet-container .map-hint { transition: opacity 0.2s ease; } }

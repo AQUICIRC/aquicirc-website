@@ -25,9 +25,45 @@
         return loading;
     };
 
+    /* Gestures: the map must not hijack page scrolling.
+       - Wheel: Ctrl/⌘ + scroll zooms (Leaflet's handler, which also stops the
+         browser's page zoom); a plain scroll is kept from Leaflet, so the page
+         scrolls, and a hint says how to zoom.
+       - Touch: one finger scrolls the page (dragging off, so Leaflet's CSS
+         leaves touch-action at pan-x pan-y); two fingers pinch and move the map.
+       `data-zoom` and `data-one-finger-pan` expose the state. */
+    var touch = window.matchMedia("(pointer: coarse)").matches;
+    var mac = /Mac|iP(hone|ad)/.test((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || "");
+    var gestures = function (el, map) {
+        el.setAttribute("data-one-finger-pan", String(!touch));
+        var hint = document.createElement("div");
+        hint.className = "map-hint";
+        hint.setAttribute("aria-hidden", "true");
+        hint.textContent = touch ? "Use two fingers to move the map"
+            : "Hold " + (mac ? "⌘" : "Ctrl") + " and scroll to zoom the map";
+        el.appendChild(hint);
+        var timer;
+        var show = function () {
+            hint.classList.add("shown");
+            clearTimeout(timer);
+            timer = setTimeout(function () { hint.classList.remove("shown"); }, 1500);
+        };
+        el.addEventListener("wheel", function (event) {
+            if (event.ctrlKey || event.metaKey) return;   /* Leaflet zooms */
+            event.stopPropagation();                      /* page scrolls */
+            show();
+        }, { capture: true });
+        el.addEventListener("touchmove", function (event) {
+            if (event.touches.length === 1) show();
+        }, { passive: true });
+        var sync = function () { el.setAttribute("data-zoom", String(map.getZoom())); };
+        map.on("load zoomend", sync);
+    };
+
     var newMap = function (el) {
         /* Fractional zoom so the Netherlands-to-Cape span fills the frame. */
-        var map = window.L.map(el, { scrollWheelZoom: false, zoomSnap: 0.25 });
+        var map = window.L.map(el, { scrollWheelZoom: true, zoomSnap: 0.25, wheelPxPerZoomLevel: 120, dragging: !touch });
+        gestures(el, map);
         window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 18,
             detectRetina: true,   /* sharp tiles on high-density screens */
