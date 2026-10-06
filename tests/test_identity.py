@@ -17,12 +17,13 @@ def test_fonts_are_archivo_and_source_serif(css):
     assert not re.search(r'--font\w+:\s*"(Signika|Heebo)"', text)
 
 
-def test_one_font_preload_and_render_expect(html):
+def test_font_preloads_and_render_expect(html):
+    """Heading face (14.5 kB) and body face: the LCP element is h1 or the lead paragraph."""
     head = html("/").head
     preloads = head.find_all("link", rel="preload")
-    assert len(preloads) == 1
-    assert preloads[0]["href"] == "/fonts/archivo-latin-wdth-normal.woff2"
-    assert preloads[0].has_attr("crossorigin")
+    assert [p["href"] for p in preloads] == [
+        "/fonts/archivo-latin-wdth-normal.woff2", "/fonts/source-serif-4-latin-wght-normal.woff2"]
+    assert all(p.has_attr("crossorigin") for p in preloads)
     expect = head.find("link", rel="expect")
     assert expect["href"] == "#main" and expect["blocking"] == "render"
 
@@ -61,3 +62,8 @@ def test_heading_font_is_small_enough_for_lcp():
     from pathlib import Path
     fonts = Path(__file__).resolve().parents[1] / "static/fonts"
     assert (fonts / "archivo-latin-wdth-normal.woff2").stat().st_size < 40_000
+
+
+def test_no_full_size_logo_as_favicon(html):
+    icons = [l["href"] for l in html("/").head.find_all("link", rel=lambda r: r and "icon" in r)]
+    assert "/uploads/branding/aquicirc-logo.png" not in icons
