@@ -15,3 +15,7 @@ AQUICIRC studies how treated wastewater, industrial effluent and harvested rainw
 ## What we set out to do
 
 {{< features >}}
+
+---.transect
+
+---

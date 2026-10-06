@@ -249,4 +249,20 @@
         select(0);
         widget.classList.add("ready");
     });
+
+    /* -- in-place reveals ----------------------------------------------
+       [data-reveal] hosts show their .reveal on hover or focus (CSS).
+       Escape hides it without moving the pointer or focus (WCAG 1.4.13);
+       leaving the host re-arms it. */
+    document.addEventListener("keydown", function (event) {
+        if (event.key !== "Escape") return;
+        Array.prototype.forEach.call(
+            document.querySelectorAll("[data-reveal]:hover, [data-reveal]:focus-within"),
+            function (host) { host.classList.add("dismissed"); }
+        );
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function (host) {
+        host.addEventListener("pointerleave", function () { host.classList.remove("dismissed"); });
+        host.addEventListener("focusout", function () { host.classList.remove("dismissed"); });
+    });
 })();

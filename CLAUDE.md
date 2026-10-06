@@ -55,3 +55,5 @@ would be required for core functionality, redesign instead.
 - `data/settings.yaml`: `intersectionobserver: false`.
 - `layouts/_partials/site/footer.html`: contact email, funding statement wrapper + `funders` logo list from `data/en/footer.yaml`.
 - `static/css/sections/features.css`: feature cards left-aligned (was centred).
+- `static/js/site.js`: Escape dismissal for `[data-reveal]` hosts.
+- `static/css/sections/intro.css`: page openers left-aligned on the wide column (was centred, small).
