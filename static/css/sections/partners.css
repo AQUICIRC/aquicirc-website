@@ -1,0 +1,15 @@
+/* -- brick: partners ----------------------------------------------------- */
+section.partners { padding-block: var(--brick-space); }
+.partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 2rem 1.5rem; align-items: start; margin-block-start: 1.5rem; }
+section.partners .country h3 { margin-block: 0 0.75rem; font-size: 1rem; color: var(--textMedium); }
+section.partners ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+section.partners li { border: 1px solid var(--borderLight); border-radius: var(--radius-s); padding: 1rem; scroll-margin-top: 6rem; }
+section.partners li:target { border-color: var(--flow); box-shadow: inset 0 0 0 1px var(--flow); }
+section.partners img { height: 3rem; width: auto; margin-block-end: 0.5rem; }
+.partner-name { font-family: var(--fontTitles); font-weight: 600; margin: 0; }
+.partner-role { font-size: 0.9rem; color: var(--textMedium); margin: 0.25rem 0 0; }
+ul.partnerstrip { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+ul.partnerstrip li { font-family: var(--fontTitles); font-size: 0.95rem; }
+ul.partnerstrip a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+ul.partnerstrip img { height: 2.5rem; width: auto; filter: grayscale(1); }
+ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }

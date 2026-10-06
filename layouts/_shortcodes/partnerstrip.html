@@ -1,0 +1,7 @@
+{{- /* All partners as a static strip (logo when present, else short name). */ -}}
+{{- $d := partial "data.html" .Page -}}
+<ul class="partnerstrip">
+  {{- range $p := $d.partners -}}
+  <li><a href="/consortium/#partner-{{ $p.id }}">{{ with $p.logo }}<img src="{{ . }}" alt="{{ $p.name }}" height="40" loading="lazy">{{ else }}{{ $p.short }}{{ end }}</a></li>
+  {{- end -}}
+</ul>

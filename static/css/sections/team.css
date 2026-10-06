@@ -6,7 +6,7 @@ section.team li > article {
     flex-direction: column;
     block-size: 100%;
     padding: 2.25rem clamp(1.5rem, 4vw, 3rem);
-    text-align: center;
+    text-align: start;   /* AQUICIRC: left-aligned (was center) */
     background: var(--light);
     border: 0.1rem solid var(--borderLight);
     border-radius: var(--radius);

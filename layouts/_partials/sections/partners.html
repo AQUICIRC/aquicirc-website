@@ -1,0 +1,32 @@
+{{- /* Brick: partners — grouped by country, coordinator's country first (spec §6.5). */ -}}
+{{- $label := partial "section_label.html" .Content -}}
+{{- $d := partial "data.html" .Page -}}
+{{- $partners := $d.partners -}}
+{{- $coord := index (where $partners "role" "coordinator") 0 -}}
+{{- $countries := slice -}}
+{{- range $partners -}}{{- $countries = $countries | append .country -}}{{- end -}}
+{{- $countries = sort (uniq $countries) -}}
+{{- $ordered := slice $coord.country -}}
+{{- range $countries -}}{{- if ne . $coord.country -}}{{- $ordered = $ordered | append . -}}{{- end -}}{{- end -}}
+{{- $roles := dict "coordinator" "Coordinator" "wp-lead" "Work package lead" "partner" "Partner" -}}
+<section class="partners"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
+  <div class="container">
+    {{ .Content }}
+    <div class="partners-grid">
+    {{- range $country := $ordered -}}
+    <div class="country">
+      <h3>{{ $country }}</h3>
+      <ul>
+        {{- range where $partners "country" $country -}}
+        <li id="partner-{{ .id }}">
+          {{ with .logo }}<img src="{{ . }}" alt="" height="48" loading="lazy">{{ end }}
+          <p class="partner-name">{{ with .url }}<a href="{{ . }}" rel="noopener">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</p>
+          <p class="partner-role">{{ index $roles .role }}{{ with .wps }}, {{ delimit . ", " }}{{ end }}</p>
+        </li>
+        {{- end -}}
+      </ul>
+    </div>
+    {{- end -}}
+    </div>
+  </div>
+</section>

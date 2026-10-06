@@ -57,3 +57,5 @@ would be required for core functionality, redesign instead.
 - `static/css/sections/features.css`: feature cards left-aligned (was centred).
 - `static/js/site.js`: Escape dismissal for `[data-reveal]` hosts.
 - `static/css/sections/intro.css`: page openers left-aligned on the wide column (was centred, small).
+- `layouts/_shortcodes/team.html`: optional `group` filter and empty state.
+- `static/css/sections/small.css`, `static/css/sections/team.css`: left-aligned (were centred).

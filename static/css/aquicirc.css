@@ -67,7 +67,7 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 .sitefooter.dark .logo img, .siteheader.dark .logo img { filter: none; }
 
 /* Left-aligned collection intros (spec §7.3); v2 centres them. */
-section.collection > .container.small { text-align: start; max-width: var(--measure-wide); }
+:is(section.collection, section.small) > .container.small { text-align: start; max-width: var(--measure-wide); }
 
 /* Data tables: sticky headers; stacked cards when the frame is narrow (guide responsive-table). */
 .datatable-frame { container-type: inline-size; overflow: auto; max-height: 80vh; border: 1px solid var(--borderLight); border-radius: var(--radius-s); }

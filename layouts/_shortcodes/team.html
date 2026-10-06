@@ -15,7 +15,12 @@
   section is what picks the brick that wraps it.
 */ -}}
 {{- $d := partial "data.html" .Page -}}
-{{- with $d.people -}}
+{{- $people := $d.people | default slice -}}
+{{- with .Get "group" -}}{{- $people = where $people "group" . -}}{{- end -}}
+{{- if not $people -}}
+<p class="empty">Profiles will appear here as partners confirm them.</p>
+{{- else -}}
+{{- with $people -}}
 <ul class="team">
     {{- range . -}}
         {{- $person := .name -}}
@@ -39,4 +44,4 @@
         </li>
     {{- end -}}
 </ul>
-{{- end -}}
+{{- end -}}{{- end -}}
