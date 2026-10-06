@@ -5,8 +5,7 @@ the proposal). Ordinary software — the analysis-repo rules in `~/code/CLAUDE.m
 apply.
 
 ## Stack and hosting
-- Hugo **0.167.0**, pinned in two places that must agree: `pixi.toml` and
-  `HUGO_VERSION` in `.github/workflows/pages.yml`.
+- Hugo **0.167.0**, pinned only in pixi.toml / pixi.lock; CI installs it through prefix-dev/setup-pixi.
 - Starter: **Hugobricks v2** (MIT), vendored (not a submodule) from
   `jhvanderschee/hugobricks_v2` @ `0f7ae0a`. Only the engine was copied (layouts, i18n,
   static/css|fonts|img|js, config); demo content and the 93 MB of demo uploads were not.
@@ -34,3 +33,17 @@ apply.
 ## Never commit
 `.env*`, `aquicirc gmail com Za.txt` (account credentials), the grant proposal PDF and
 other root-level PDFs — all gitignored.
+
+## Browser support policy
+Baseline Widely available features are used freely. Newer features only as feature-detected
+progressive enhancement that degrades to a complete page. No polyfills; if a newer feature
+would be required for core functionality, redesign instead.
+
+## Testing
+`pixi run test` builds the site and checks the HTML (runs in CI before deploy).
+`pixi run test-browser` runs the Playwright behaviour tests locally
+(`pixi run install-browsers` once).
+
+## Changes vs upstream Hugobricks v2
+- `hugo.yaml`: Usecue `json` home output removed. `layouts/home.json` deleted.
+- `layouts/baseof.html`: Usecue iframe-monitor script removed.

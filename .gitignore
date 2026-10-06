@@ -17,3 +17,7 @@
 
 # Local Claude Code settings
 .claude/settings.local.json
+
+# Python test caches
+.pytest_cache/
+__pycache__/

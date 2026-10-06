@@ -5,10 +5,19 @@ channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
 
 [dependencies]
-# Keep in sync with HUGO_VERSION in .github/workflows/pages.yml
+# The only Hugo pin. CI installs it through pixi too.
 hugo = "==0.167.0"
+python = "3.13.*"
+pytest = "*"
+beautifulsoup4 = "*"
+pyyaml = "*"
+playwright = "*"
+pytest-playwright = "*"
 
 [tasks]
 dev = "hugo server --buildDrafts --buildFuture --disableFastRender"
-build = "hugo --gc --minify"
+build = "hugo --gc --minify --panicOnWarning"
 clean = "rm -rf public resources .hugo_build.lock"
+test = "pytest -m 'not browser'"
+test-browser = "pytest -m browser"
+install-browsers = "playwright install chromium"
