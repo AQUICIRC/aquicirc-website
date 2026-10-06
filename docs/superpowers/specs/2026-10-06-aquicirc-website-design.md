@@ -153,16 +153,24 @@ climate band; the line is labelled with latitude ticks.
 
 - **Markup first:** an ordered list of links (north → south) — readable and navigable with
   no CSS/JS. CSS places each item with a `--y` custom property computed in the template.
-- **One orchestrated motion, the only automatic animation on the site:** on first scroll into
-  view the line draws north → south and sites appear in that order (IntersectionObserver
-  adds a class; CSS does the animation). `prefers-reduced-motion`: everything static.
+- **One orchestrated motion, the only automatic animation on the site:** as the section
+  scrolls into view the line draws north → south and sites appear in that order — a native
+  CSS scroll-driven animation (`animation-timeline: view()`), gated by
+  `@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%))`. It is
+  decorative, so per modern-web-guidance it is progressive enhancement with **no JS
+  fallback**: browsers without support (Firefox today) show the finished transect.
+  `prefers-reduced-motion`: static everywhere.
 - Marks (dataviz rules): meridian = 2px line, site = filled dot ≥ 8px (r ≥ 4) with a 2px
   surface ring, both in `--flow` (contrast ≥ 3:1 on white and on pore-water; cyan fails at
   2.1–2.3:1 and is not used for any data mark). Latitude ticks are solid 1px hairlines in
   `--borderMedium`. Site names, countries and climate labels use text tokens, never the
   mark colour. Single series → no legend; the section heading names it.
-- Hover/focus on a site reveals its key facts (MAR system, source water) in place; the
-  same facts are always reachable without hover through the site page and the
+- Hover/focus on a site reveals its key facts (MAR system, source water) **in place,
+  inside the item's own box** — plain CSS (`:hover`, `:focus-within`), not a popover:
+  `popover="hint"` + `interestfor` + anchor positioning is the modern pattern but is
+  Chrome/Edge-only and would need two polyfills; revisit when Baseline. WCAG 1.4.13: the
+  reveal is hoverable (it is part of the hovered box), persistent, and dismissible with
+  Escape (a few lines of JS). The same facts are always reachable without hover through the site page and the
   `sitecompare` table (the transect's table view). Each site's hit target is ≥ 24px tall
   and covers the dot plus its label; keyboard focus shows exactly what hover shows.
 - Narrow screens: stays vertical; the intro text stacks above.
@@ -170,7 +178,8 @@ climate band; the line is labelled with latitude ticks.
 ### 6.2 `workpackages`
 The six WPs as a flow: WP2 → WP3 → WP4 → WP5 in sequence, with WP1 (management) and WP6
 (knowledge transfer) drawn as bands spanning the sequence. Numbering is used because the
-content really is a sequence. Each WP is a native `<details>`: summary shows number, title,
+content really is a sequence. Each WP is a native `<details>` (no `name` grouping — readers
+may want two WPs open to compare; native details stay findable with Ctrl+F): summary shows number, title,
 lead; open shows tasks and the WP's deliverables (joined from `deliverables.yaml`).
 
 ### 6.3 `timeline`
@@ -185,7 +194,8 @@ so it stays right between builds; without JS it is absent rather than wrong.
   gridlines are solid 1px hairlines; year labels on the axis, quarters as ticks. "Today"
   is a 1px `--aquifer` rule with a text label.
 - Each bar and diamond is focusable and shows a tooltip (task or deliverable, its id, start
-  – end / due quarter) on hover and focus; the tooltip never gates — the WP `<details>`
+  – end / due quarter) on hover and focus — the same CSS in-place technique and Escape
+  dismissal as the transect; the tooltip never gates — the WP `<details>`
   above and the Deliverables table on Outputs are the table view. Tooltip text is set via
   `textContent`.
 - The container grows with its content (axis band included); on narrow screens the grid
@@ -208,6 +218,10 @@ openstreetmap.org.
 - `sitecompare` — Table 1 as a real `<table>` built from site front matter; on narrow
   screens each row becomes a stacked card.
 - `partners` — partners grouped by country, coordinator first, logo + name + role; links out.
+- Outputs tabs: v2's tab script hides inactive panels with `hidden`, which makes their
+  text unfindable by in-page search. Change it to `hidden="until-found"` plus a
+  `beforematch` listener that selects the matching tab, so Ctrl+F and deep links reach a
+  publication in a closed tab (modern-web-guidance `search-hidden-content`).
 - Shortcodes for Outputs tabs: `publications`, `deliverables`, `datasets`. Deliverable
   status (planned / submitted / public) is state, so it is always a text label plus a small
   icon; colour, if any, only reinforces it and never carries it alone.
@@ -270,6 +284,8 @@ its own validated steps, not an automatic inversion.
   `data/en/footer.yaml` next to the funding statement.
 - `layouts/_shortcodes/team.html`: optional `group` filter.
 - `layouts/_shortcodes/blog.html`: optional `limit` (Home shows 3).
+- `static/js/site.js`: tab panels use `hidden="until-found"` + `beforematch` (§6.5);
+  Escape dismissal for in-place reveals (§6.1, §6.3).
 - `hugo.yaml`: routing rules for new bricks only if a named divider is not enough;
   `permalinks` for posts; `sites` section.
 - New bluesky icon in `static/img/`.
@@ -294,6 +310,9 @@ be grepped before launch.
 - Before each phase is called done: Playwright screenshots of every page at 375 px and
   1280 px, keyboard-only pass through menu, transect, WP details, tabs and map button;
   reduced-motion check.
+- Before implementing each interactive element, search modern-web-guidance for it and
+  follow the retrieved guide (Baseline Widely available without fallbacks; anything newer
+  needs the guide's fallback or is progressive enhancement).
 - Transect and timeline checked against the dataviz anti-pattern list; any new colour
   added to a data mark is run through the palette validator first.
 - `grep -r "TODO(content)"` is empty before announcing the site.
