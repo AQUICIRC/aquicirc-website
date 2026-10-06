@@ -1,0 +1,23 @@
+favicon_image: /uploads/branding/aquicirc-logo.png
+favicon:
+  asset: /uploads/branding/aquicirc-logo.png
+  apple_mobile_web_app_title: AQUICIRC
+  site_webmanifest:
+    name: AQUICIRC
+    shortname: AQUICIRC
+    theme_color: "#0F2A3F"
+    background_color: "#FFFFFF"
+color_name:
+sticky_header: true
+dark_header: false
+transparent_header: false
+dark_footer: true
+customcursor: false
+intersectionobserver: true
+filter_has_numbers: true
+page_size: 3
+preheader:
+  active: false
+  is_light: true
+enable_search: false
+enable_webshop: false

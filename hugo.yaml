@@ -1,0 +1,159 @@
+# Overridden at build time by the Pages workflow (--baseURL).
+baseURL: https://aquicirc.github.io/aquicirc-website/
+defaultContentLanguage: en
+
+# The stylesheet is authored under `static/css/`, so that is where Hugo Pipes
+# looks for it as well as where the files are served from.
+assetDir: static
+
+languages:
+  en:
+    locale: en
+    label: English
+    contentDir: content/en
+    weight: 1
+
+params:
+  sections:
+    - title: wide
+      has: h2#buttons
+      not_has:
+      is:
+      not_is:
+    - title: wide
+      has: section.faqgroup
+      not_has:
+      is:
+      not_is:
+    - title: error404
+      has: img.404
+      not_has:
+      is:
+      not_is:
+    - title: webshop
+      has: ul.products
+      not_has:
+      is:
+      not_is:
+    - title: cart
+      has: p.carttotal
+      not_has:
+      is:
+      not_is:
+    - title: checkout
+      has: form#checkoutform
+      not_has:
+      is:
+      not_is:
+    - title: payment
+      has: ul.methods
+      not_has:
+      is:
+      not_is:
+    - title: payment
+      has: div#usecuepayment
+      not_has:
+      is:
+      not_is:
+    - title: contact
+      has: form#contactform
+      not_has:
+      is:
+      not_is:
+    - title: about
+      has: img.about
+      not_has:
+      is:
+      not_is:
+    - title: cta
+      has: a.button:last-child
+      not_has: img.map
+      is: :last-child
+      not_is:
+    - title: features
+      has: ul.features
+      not_has:
+      is:
+      not_is:
+    - title: team
+      has: ul.team
+      not_has:
+      is:
+      not_is:
+    - title: posts
+      has: ul.posts
+      not_has:
+      is:
+      not_is:
+    - title: reviews
+      has: ul.reviews
+      not_has:
+      is:
+      not_is:
+    - title: quote
+      has: blockquote:first-child
+      not_has: 
+      is:
+      not_is:
+    - title: map
+      has: img.map
+      not_has: 
+      is:
+      not_is:
+    - title: wide
+      has: h1
+      not_has: img.background
+      is: :only-child
+      not_is:
+    - title: intro
+      has: h1
+      not_has: img.background
+      is:
+      not_is:
+    - title: header
+      has: h1, img.background
+      not_has: 
+      is:
+      not_is: 
+    - title: image
+      has: img.float
+      not_has:
+      is: 
+      not_is:
+    - title: prices
+      has: ul.prices
+      not_has:
+      is:
+      not_is:
+    - title: blocks
+      has: ul, strong
+      not_has:
+      is:
+      not_is:
+    - title: form
+      has: form#ctaform
+      not_has:
+      is:
+      not_is:
+    - title: small
+      has: 
+      not_has: :nth-child(4)
+      is:
+      not_is:
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+disableKinds:
+  - taxonomy
+  - term
+
+outputs:
+  home:
+    - html
+    - rss
+    # Search ships no index: `enable_search` in data/settings.yaml puts the
+    # banner's search icon up, and the `/search` page it points to scopes a
+    # Google search to this site.

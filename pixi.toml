@@ -1,0 +1,14 @@
+[workspace]
+name = "aquicirc-website"
+description = "AQUICIRC project website, built with Hugo and Hugobricks v2"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[dependencies]
+# Keep in sync with HUGO_VERSION in .github/workflows/pages.yml
+hugo = "==0.167.0"
+
+[tasks]
+dev = "hugo server --buildDrafts --buildFuture --disableFastRender"
+build = "hugo --gc --minify"
+clean = "rm -rf public resources .hugo_build.lock"
