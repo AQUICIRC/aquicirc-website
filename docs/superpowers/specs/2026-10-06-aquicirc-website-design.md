@@ -156,8 +156,15 @@ climate band; the line is labelled with latitude ticks.
 - **One orchestrated motion, the only automatic animation on the site:** on first scroll into
   view the line draws north → south and sites appear in that order (IntersectionObserver
   adds a class; CSS does the animation). `prefers-reduced-motion`: everything static.
+- Marks (dataviz rules): meridian = 2px line, site = filled dot ≥ 8px (r ≥ 4) with a 2px
+  surface ring, both in `--flow` (contrast ≥ 3:1 on white and on pore-water; cyan fails at
+  2.1–2.3:1 and is not used for any data mark). Latitude ticks are solid 1px hairlines in
+  `--borderMedium`. Site names, countries and climate labels use text tokens, never the
+  mark colour. Single series → no legend; the section heading names it.
 - Hover/focus on a site reveals its key facts (MAR system, source water) in place; the
-  link opens the site page.
+  same facts are always reachable without hover through the site page and the
+  `sitecompare` table (the transect's table view). Each site's hit target is ≥ 24px tall
+  and covers the dot plus its label; keyboard focus shows exactly what hover shows.
 - Narrow screens: stays vertical; the intro text stacks above.
 
 ### 6.2 `workpackages`
@@ -170,6 +177,20 @@ lead; open shows tasks and the WP's deliverables (joined from `deliverables.yaml
 A CSS-grid Gantt of 36 months / 12 quarters with one row per WP (bars from task spans) and
 deliverable ticks. A "today" marker is placed by a few lines of JS from the current date,
 so it stays right between builds; without JS it is absent rather than wrong.
+
+- Marks: one series → every bar in `--flow`, ≤ 24px thick, 4px rounded ends, 2px surface
+  gap between a WP's adjacent task bars; WP identity comes from the row label (text
+  tokens), not colour. Deliverables are a different shape (≥ 8px diamond in `--aquifer`
+  with a 2px surface ring) so shape, not hue, separates them from tasks. Quarter and year
+  gridlines are solid 1px hairlines; year labels on the axis, quarters as ticks. "Today"
+  is a 1px `--aquifer` rule with a text label.
+- Each bar and diamond is focusable and shows a tooltip (task or deliverable, its id, start
+  – end / due quarter) on hover and focus; the tooltip never gates — the WP `<details>`
+  above and the Deliverables table on Outputs are the table view. Tooltip text is set via
+  `textContent`.
+- The container grows with its content (axis band included); on narrow screens the grid
+  scrolls horizontally inside its own frame with the WP labels pinned, rather than
+  squeezing 12 quarters into 360px.
 
 ### 6.4 Site page layout — `layouts/sites/page.html`
 Renders the page whole (like v2 posts, bypassing `section_map`): header with title and
@@ -187,8 +208,9 @@ openstreetmap.org.
 - `sitecompare` — Table 1 as a real `<table>` built from site front matter; on narrow
   screens each row becomes a stacked card.
 - `partners` — partners grouped by country, coordinator first, logo + name + role; links out.
-- Shortcodes for Outputs tabs: `publications`, `deliverables` (status shown as text with a
-  restrained colour, not a badge soup), `datasets`.
+- Shortcodes for Outputs tabs: `publications`, `deliverables`, `datasets`. Deliverable
+  status (planned / submitted / public) is state, so it is always a text label plus a small
+  icon; colour, if any, only reinforces it and never carries it alone.
 - Partner logo strip on Home: static, greyscale-to-colour only on hover/focus.
 
 ## 7. Visual identity
@@ -200,12 +222,16 @@ Plan (frontend-design pass; reviewed against generic defaults — see §7.4).
 |---|---|---|
 | `--aquifer` | `#0F2A3F` | text, hero and footer backgrounds |
 | `--flow` | `#2471A1` | links, buttons, focus ring (≥ 4.5:1 on white) |
-| `--recharge` | `#32B8D9` | water lines, transect, graphics — never text on white |
+| `--recharge` | `#32B8D9` | decorative water lines (strata band), accents on the navy hero — never text, never a data mark on light surfaces (2.3:1) |
 | `--porewater` | `#EAF4F7` | tinted section bands |
 | `--sediment` | `#C9B38A` | strata band, key-facts box, sparingly |
 | `--page` | `#FFFFFF` | base |
 
 Mapped onto v2's tokens in `variables.css` (`--accent` = flow, `--textDark` = aquifer, …).
+Validated with the dataviz palette checker: flow vs recharge ΔE 20 (normal and CVD); on
+the navy hero only one cyan may carry meaning (the logo's lighter cyan is ΔE 7.6 from it).
+The site is **light-only** for this launch (v2 ships no dark mode); a dark theme would get
+its own validated steps, not an automatic inversion.
 
 ### 7.2 Type
 - **Archivo** (variable, width axis) for headings, menu and buttons — set semi-expanded to
@@ -268,4 +294,6 @@ be grepped before launch.
 - Before each phase is called done: Playwright screenshots of every page at 375 px and
   1280 px, keyboard-only pass through menu, transect, WP details, tabs and map button;
   reduced-motion check.
+- Transect and timeline checked against the dataviz anti-pattern list; any new colour
+  added to a data mark is run through the palette validator first.
 - `grep -r "TODO(content)"` is empty before announcing the site.
