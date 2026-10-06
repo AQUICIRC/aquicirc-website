@@ -54,3 +54,10 @@ def test_empty_states_do_not_pull_the_italic_face(css):
     import re
     rule = re.search(r"\.empty\s*{[^}]*}", css()).group(0)
     assert "italic" not in rule
+
+
+def test_heading_font_is_small_enough_for_lcp():
+    """The hero h1 waits on this file; a full variable font cost ~0.7 s of simulated LCP."""
+    from pathlib import Path
+    fonts = Path(__file__).resolve().parents[1] / "static/fonts"
+    assert (fonts / "archivo-latin-wdth-normal.woff2").stat().st_size < 40_000

@@ -13,6 +13,8 @@ beautifulsoup4 = "*"
 pyyaml = "*"
 playwright = "*"
 pytest-playwright = "*"
+fonttools = ">=4.66.1,<5"
+brotli = ">=1.2.0,<2"
 
 [tasks]
 dev = "hugo server --buildDrafts --buildFuture --disableFastRender"
