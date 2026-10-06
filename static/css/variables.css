@@ -6,21 +6,29 @@
    ========================================================================== */
 
 :root {
-    /* colour */
-    --textDarker:   #1e282d;
-    --textDark:     rgb(38 50 56);
-    --textMedium:   rgb(38 50 56 / 0.7);
-    --borderMedium: rgb(38 50 56 / 0.2);
-    --borderLight:  rgb(38 50 56 / 0.075);
-    --light:        rgb(38 50 56 / 0.035);
-    --page:         #fff;
-    --accent:       #f4b500;
-    --accentDarker: #e6ac00;
-    --scrim:        rgb(0 0 0 / 0.32);
+    /* colour — AQUICIRC, from the logo */
+    --aquifer:   #0F2A3F;
+    --flow:      #2471A1;
+    --recharge:  #32B8D9;   /* decoration only: never text, never a data mark on light */
+    --porewater: #EAF4F7;
+    --sediment:  #C9B38A;
+    --page:      #FFFFFF;
+    --surface-ring: var(--page);
+
+    /* v2 names, mapped */
+    --textDarker:   var(--aquifer);
+    --textDark:     var(--aquifer);
+    --textMedium:   rgb(15 42 63 / 0.78);
+    --borderMedium: rgb(15 42 63 / 0.22);
+    --borderLight:  rgb(15 42 63 / 0.08);
+    --light:        var(--porewater);
+    --accent:       var(--flow);
+    --accentDarker: #1B5A80;
+    --scrim:        rgb(15 42 63 / 0.4);
 
     /* type */
-    --fontTitles: "Signika", ui-sans-serif, system-ui, sans-serif;
-    --fontBody:   "Heebo", ui-sans-serif, system-ui, sans-serif;
+    --fontTitles: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    --fontBody:   "Source Serif 4", ui-serif, Georgia, serif;
 
     /* measure */
     --measure-small:  40rem;
@@ -33,13 +41,5 @@
     /* rhythm */
     --brick-space:       clamp(3.5rem, 7vw, 5rem);
     --brick-space-tight: clamp(1.5rem, 3vw, 2rem);
-    --flow:        1.7em;
+    --flow-space:  1.7em;   /* renamed from v2 --flow: that name is the AQUICIRC colour */
 }
-
-/* Colour themes. `color_name` in data/settings.yaml sets it site-wide, a
-   page's own `color_name` front matter overrides it. The palettes differ only
-   in the accent, so this is two tokens rather than four stylesheets. */
-:root[data-color="red"]    { --accent: #ec0f0f; --accentDarker: #e00606; }
-:root[data-color="blue"]   { --accent: #00adef; --accentDarker: #009ad5; }
-:root[data-color="green"]  { --accent: #5fb22d; --accentDarker: #4f9625; }
-:root[data-color="yellow"] { --accent: #f4b500; --accentDarker: #e6ac00; }

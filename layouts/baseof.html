@@ -10,6 +10,8 @@
     <meta name="description" content="{{ if .Summary }}{{ substr (htmlUnescape (.Summary | plainify)) 0 160 }}{{ else }}{{ substr $d.general.description 0 160 }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
     {{ partial "site/favicon.html" . }}
+    <link rel="preload" href="/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="expect" href="#main" blocking="render">
     {{ partial "site/styles.html" . }}
 </head>
 <body id="top" data-mobile-width="{{ $d.header.mobile_view_width | default 1100 }}">

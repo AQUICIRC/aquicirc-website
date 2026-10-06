@@ -13,7 +13,7 @@ dark_header: false
 transparent_header: false
 dark_footer: true
 customcursor: false
-intersectionobserver: true
+intersectionobserver: false
 filter_has_numbers: true
 page_size: 3
 preheader:

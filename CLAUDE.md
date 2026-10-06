@@ -47,3 +47,9 @@ would be required for core functionality, redesign instead.
 ## Changes vs upstream Hugobricks v2
 - `hugo.yaml`: Usecue `json` home output removed. `layouts/home.json` deleted.
 - `layouts/baseof.html`: Usecue iframe-monitor script removed.
+- `static/css/variables.css`: AQUICIRC colour/type tokens; v2 names mapped onto them; colour themes removed. v2's spacing token `--flow` renamed `--flow-space` (3 uses in `style.css`) because `--flow` is the AQUICIRC flow-blue colour.
+- `static/css/fonts.css`, `static/fonts/`: Archivo + Source Serif 4 (OFL, `OFL-*.txt`) replace Signika + Heebo.
+- `static/css/style.css`: `[hidden]` rule excludes `hidden="until-found"`; `var(--flow)` → `var(--flow-space)`.
+- `layouts/_partials/site/styles.html`: bundles `css/aquicirc.css`.
+- `layouts/baseof.html`: Archivo preload, `<link rel="expect" href="#main" blocking="render">`.
+- `data/settings.yaml`: `intersectionobserver: false`.

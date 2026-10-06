@@ -90,7 +90,7 @@ video, audio, iframe { width: 100%; }
    `.button` sets `inline-block`, and a hidden button stayed on the page. This
    is the case `!important` is for: `hidden` is a state the markup asserts, not
    a style a component gets a say in. */
-[hidden] { display: none !important; }
+[hidden]:not([hidden="until-found"]) { display: none !important; }
 
 a { color: var(--textMedium); }
 a:focus-visible,
@@ -149,7 +149,7 @@ h2 + h3, h3 + h4 { margin-block-start: 0; }
    `:where()` keeps the specificity at `main` alone, so every override further
    down the file still wins. */
 main :where(p, ul, ol, dl, blockquote, pre, figure, table, details, address, form) {
-    margin-block-end: var(--flow);
+    margin-block-end: var(--flow-space);
 }
 :where(section) :last-child { margin-block-end: 0; }
 
@@ -262,7 +262,7 @@ p > .button { margin-block: 0.5rem; }
     border-radius: var(--radius);
     padding: 3.5rem clamp(2rem, 5vw, 5rem);
 }
-.box:not(:last-child) { margin-block-end: var(--flow); }
+.box:not(:last-child) { margin-block-end: var(--flow-space); }
 
 /* Two columns that fall to one when there is no room for both. `.twocols` is
    named in the markup by `image`, `image-alt`, `contact`, `product` and
@@ -564,7 +564,7 @@ ul.breadcrumbs {
 /* -- details / faq ------------------------------------------------------- */
 
 details { border-block: 0.1rem solid var(--borderMedium); }
-details + details { border-block-start: 0; margin-block-start: calc(var(--flow) * -1); }
+details + details { border-block-start: 0; margin-block-start: calc(var(--flow-space) * -1); }
 details summary {
     position: relative;
     display: block;
