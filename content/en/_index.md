@@ -22,6 +22,12 @@ AQUICIRC studies how treated wastewater, industrial effluent and harvested rainw
 
 ---
 
+## Latest news
+
+{{< blog limit="3" >}}
+
+---
+
 ## Partners
 
 {{< partnerstrip >}}

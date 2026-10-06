@@ -59,3 +59,8 @@ would be required for core functionality, redesign instead.
 - `static/css/sections/intro.css`: page openers left-aligned on the wide column (was centred, small).
 - `layouts/_shortcodes/team.html`: optional `group` filter and empty state.
 - `static/css/sections/small.css`, `static/css/sections/team.css`: left-aligned (were centred).
+- `layouts/_shortcodes/blog.html`: `limit` parameter (no filter, no paging) and empty state.
+- `layouts/_partials/sections/post.html`: tag links to `/news/`, featured image uses `image_alt`, build fails without it.
+- `static/css/sections/post.css`: post header left-aligned (was centred).
+- `hugo.yaml`: posts published under `/news/`.
+- Post front matter uses `case_sites` (not `sites`, which Hugo reserves).

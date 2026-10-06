@@ -27,6 +27,8 @@
   shortcode into a section is what picks the brick that wraps it.
 */ -}}
 {{- $posts := sort (where site.RegularPages "Section" "posts") "Date" "desc" -}}
+{{- $limit := int (.Get "limit" | default 0) -}}
+{{- if $limit -}}{{- $posts = first $limit $posts -}}{{- end -}}
 {{- with $posts -}}
 
 {{- /* `with` skips the blanks: a post whose front matter leaves a `tags:`
@@ -35,6 +37,7 @@
 {{- range . -}}
     {{- range .Params.tags -}}{{- with . -}}{{- $tags = $tags | append . -}}{{- end -}}{{- end -}}
 {{- end -}}
+{{- if not $limit -}}
 {{- with sort (uniq $tags) -}}
 <form class="filter">
     <label class="sr-only" for="tagfilter">{{ i18n "Filter posts by tag" }}</label>
@@ -45,7 +48,9 @@
     <ul class="tags" aria-live="polite"></ul>
 </form>
 {{- end -}}
-
-{{- partial "teaser_list.html" (dict "Pages" . "Dates" true "PageSize" hugo.Data.settings.page_size) -}}
-<p class="loadmore"><button type="button" class="button secondary ghost smaller" hidden>{{ i18n "Load more posts" }}…</button></p>
 {{- end -}}
+
+{{- partial "teaser_list.html" (dict "Pages" . "Dates" true "PageSize" (cond (gt $limit 0) 0 hugo.Data.settings.page_size)) -}}
+{{- if not $limit -}}<p class="loadmore"><button type="button" class="button secondary ghost smaller" hidden>{{ i18n "Load more posts" }}…</button></p>{{- end -}}
+{{- end -}}
+{{- if not $posts -}}<p class="empty">No news yet.</p>{{- end -}}

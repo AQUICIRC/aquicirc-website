@@ -60,7 +60,7 @@
 
 {{- $news := slice -}}
 {{- range where site.RegularPages "Section" "posts" -}}
-  {{- if in (.Params.sites | default slice) $slug -}}{{- $news = $news | append . -}}{{- end -}}
+  {{- if in (.Params.case_sites | default slice) $slug -}}{{- $news = $news | append . -}}{{- end -}}
 {{- end -}}
 <section class="sitenews" aria-labelledby="sitenews-title">
   <div class="container medium">

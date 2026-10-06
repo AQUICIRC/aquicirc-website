@@ -18,6 +18,9 @@
   @context {dict} . Content, Name, Index, Page
 */ -}}
 {{- $page := .Page -}}
+{{- if and $page.Params.image (not $page.Params.image_alt) -}}
+  {{- errorf "post %q has an image but no image_alt" $page.File.Path -}}
+{{- end -}}
 {{- $icons := "/img/icons/material-symbols/200/rounded" -}}
 {{- $tags := slice -}}
 {{- range $page.Params.tags -}}{{- with . -}}{{- $tags = $tags | append . -}}{{- end -}}{{- end -}}
@@ -38,7 +41,7 @@
                         <span class="icon" style="--icon: url('{{ $icons }}/label-fill.svg')"></span>
                         <span class="tags">
                             {{- range $i, $tag := . -}}
-                                {{ if $i }}, {{ end }}<a href="{{ "blog/" | relLangURL }}?tag={{ $tag | urlize }}">{{ $tag }}</a>
+                                {{ if $i }}, {{ end }}<a href="{{ "news/" | relLangURL }}?tag={{ $tag | urlize }}">{{ $tag }}</a>
                             {{- end -}}
                         </span>
                     </span>
@@ -50,7 +53,7 @@
         {{- $src := . -}}
         {{- with resources.GetMatch $src }}{{ $src = (.Fill "1600x800 webp Center q50").RelPermalink }}{{ end }}
         <div class="container wide">
-            <img class="featuredimage" src="{{ $src }}" alt="" width="1600" height="800">
+            <img class="featuredimage" src="{{ $src }}" alt="{{ $page.Params.image_alt }}" width="1600" height="800">
         </div>
     {{ end }}
     <article class="container">

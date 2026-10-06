@@ -63,7 +63,7 @@ def test_posts_reference_real_sites():
     for path in (ROOT / "content/en/posts").glob("*.md"):
         if path.name == "_index.md":
             continue
-        unknown = set(front_matter(path).get("sites") or []) - sites
+        unknown = set(front_matter(path).get("case_sites") or []) - sites
         assert not unknown, f"{path.name}: unknown site slugs {unknown}"
 
 

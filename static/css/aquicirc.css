@@ -91,3 +91,6 @@ section.sitecompare { padding-block: var(--brick-space); }
 /* Stacked tables on phones flow with the page: no nested scroll box. (A container
    query cannot style the container itself, so this is a media query.) */
 @media (width < 44rem) { .datatable-frame { max-height: none; overflow: visible; } }
+
+/* Breadcrumbs follow the left-aligned headings they sit above (v2 centres them). */
+nav[aria-label="Breadcrumb"] ol, ul.breadcrumbs { justify-content: flex-start; }

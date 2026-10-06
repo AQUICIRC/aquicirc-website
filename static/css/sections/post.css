@@ -8,7 +8,7 @@ section.post > .container { max-inline-size: 50rem; }
    something wider than the column it is read in. */
 section.post > .container.wide { max-inline-size: 62rem; }
 
-section.post h1 { text-align: center; }
+section.post h1 { text-align: start; }   /* AQUICIRC: left-aligned (was center) */
 /* A post with neither a date nor tags has no byline to space the title from. */
 section.post h1:last-child { margin-block-end: 3rem; }
 
@@ -26,7 +26,7 @@ section.post .featuredimage {
 section.post .meta {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;   /* AQUICIRC: was center */
     gap: 1rem;
     margin-block: -0.75rem 3rem;
     font-size: 0.9rem;

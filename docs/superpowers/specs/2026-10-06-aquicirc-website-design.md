@@ -134,7 +134,7 @@ references:
   "Atlantis & Cape Flats"); the locator map shows all of them.
 
 **`content/en/posts/<slug>.md`:** `title`, `date`, `image` + `image_alt` (optional), `tags`,
-`sites` (site slugs), `wps` (e.g. `[WP3]`). Plain Markdown body.
+`case_sites` (site slugs; `sites` is reserved by Hugo ≥ 0.153), `wps` (e.g. `[WP3]`). Plain Markdown body.
 
 **`data/en/partners.yaml`:** `id`, `name`, `short`, `country`, `city`, `url`, `logo`, `role`
 (`coordinator` | `wp-lead` | `partner`), `wps` (the WPs it leads). Seeded from the proposal:
@@ -258,7 +258,7 @@ It renders the page whole, like v2 posts, and bypasses `section_map`. Top to bot
   water, expected CECs, and partners linked to Consortium.
 - **Body prose.**
 - **Locator map** (below).
-- **News from this site:** posts whose `sites` contains this slug, newest 3, or an empty
+- **News from this site:** posts whose `case_sites` contains this slug, newest 3, or an empty
   state.
 - **References** with DOI links.
 - **Previous / next site,** north → south.
