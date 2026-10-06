@@ -17,3 +17,14 @@ def test_empty_states(html):
     doc = html("/outputs/")
     assert "No publications yet" in doc.get_text()
     assert "No datasets or models yet" in doc.get_text()
+
+
+def test_tabs_render_collapsed_without_waiting_for_js(html):
+    """Panels after the first are hidden-until-found in the HTML (no layout shift when JS runs);
+    a <noscript> style stacks them again for visitors without JS."""
+    tabs = html("/outputs/").select_one(".tabs")
+    assert "ready" in tabs["class"]
+    panels = tabs.select("[role=tabpanel]")
+    assert not panels[0].has_attr("hidden")
+    assert all(p.get("hidden") == "until-found" for p in panels[1:])
+    assert tabs.find("noscript")

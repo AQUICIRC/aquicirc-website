@@ -38,7 +38,15 @@
 {{- if not $parts -}}
     {{- warnf "tabs: the shortcode on %q is empty — write `## Heading` runs separated by `---` inside it" .Page.File.Path -}}
 {{- end -}}
-<div class="tabs">
+{{- /* AQUICIRC: rendered already collapsed (class `ready`, later panels
+       hidden-until-found) so nothing shifts when site.js wires it; the
+       <noscript> style stacks the panels again when scripting is off. */ -}}
+<div class="tabs ready">
+    <noscript><style>
+        .tabs > [role="tablist"] { display: none !important; }
+        .tabs > [role="tabpanel"][hidden] { display: block !important; content-visibility: visible !important; }
+        .tabs > [role="tabpanel"] > h2:first-child { display: block !important; }
+    </style></noscript>
     <div role="tablist" aria-label="{{ i18n "Tabs" }}">
     {{- range $i, $part := $parts -}}
         {{- $title := replaceRE `<[^>]*>` "" (or (index (findRE `(?s)<h2[^>]*>.*?</h2>` (markdownify $part) 1) 0) "") -}}
@@ -46,11 +54,11 @@
             {{- $title = printf "Tab %d" (add $i 1) -}}
             {{- warnf "tabs: a tab on %q has no `## Heading` to name it — labelled %q" $.Page.File.Path $title -}}
         {{- end -}}
-        <button type="button" role="tab" id="tab-{{ $ordinal }}-{{ $i }}" aria-controls="tabpanel-{{ $ordinal }}-{{ $i }}" aria-selected="{{ eq $i 0 }}">{{ $title | safeHTML }}</button>
+        <button type="button" role="tab" id="tab-{{ $ordinal }}-{{ $i }}" aria-controls="tabpanel-{{ $ordinal }}-{{ $i }}" aria-selected="{{ eq $i 0 }}"{{ if $i }} tabindex="-1"{{ end }}>{{ $title | safeHTML }}</button>
     {{- end -}}
     </div>
     {{- range $i, $part := $parts }}
-    <section role="tabpanel" id="tabpanel-{{ $ordinal }}-{{ $i }}" aria-labelledby="tab-{{ $ordinal }}-{{ $i }}" tabindex="0">
+    <section role="tabpanel" id="tabpanel-{{ $ordinal }}-{{ $i }}" aria-labelledby="tab-{{ $ordinal }}-{{ $i }}" tabindex="0"{{ if $i }} hidden="until-found"{{ end }}>
         {{ markdownify $part }}
     </section>
     {{- end }}
