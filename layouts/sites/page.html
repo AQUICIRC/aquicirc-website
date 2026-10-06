@@ -1,0 +1,101 @@
+{{- /*
+  A case-study site, rendered whole (not split into bricks): header, key facts,
+  prose, locator map, related news, references, previous/next north → south.
+*/ -}}
+{{ define "sections" }}
+{{- $p := . -}}
+{{- range slice "country" "coordinates" "mar_system" -}}
+  {{- if not (index $p.Params .) -}}
+    {{- errorf "site page %q is missing required front matter %q" $p.File.Path . -}}
+  {{- end -}}
+{{- end -}}
+{{- if and $p.Params.image (not $p.Params.image_alt) -}}
+  {{- errorf "site page %q has an image but no image_alt" $p.File.Path -}}
+{{- end -}}
+{{- $d := partial "data.html" $p -}}
+{{- $slug := $p.File.ContentBaseName -}}
+<section class="site">
+  <div class="container medium">
+    {{ partial "site/breadcrumbs.html" $p }}
+    <h1 style="view-transition-name: site-{{ $slug }}">{{ $p.Title }}</h1>
+    <p class="site-where">{{ with $p.Params.location }}{{ . }}, {{ end }}{{ $p.Params.country }}</p>
+
+    <dl class="facts">
+      <dt>Climate</dt><dd>{{ $p.Params.climate }}</dd>
+      <dt>Aquifer</dt><dd>{{ $p.Params.aquifer }}</dd>
+      <dt>MAR system</dt><dd>{{ $p.Params.mar_system }}</dd>
+      <dt>Source water</dt><dd>{{ $p.Params.source_water }}</dd>
+      {{ with $p.Params.expected_cecs }}<dt>Expected contaminants</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+      {{ with $p.Params.partners }}
+      <dt>Partners</dt>
+      <dd class="partners">
+        {{- range $i, $id := . -}}
+          {{- $partner := index (where $d.partners "id" $id) 0 -}}
+          {{ if $i }}, {{ end }}<a href="/consortium/#partner-{{ $id }}">{{ $partner.name }}</a>
+        {{- end -}}
+      </dd>
+      {{ end }}
+    </dl>
+
+    {{ with $p.Params.image }}
+      {{- $src := . -}}{{- $w := 1600 -}}{{- $h := 900 -}}
+      {{- with resources.GetMatch . -}}{{- $img := .Fill "1600x900 webp Center q60" -}}{{- $src = $img.RelPermalink -}}{{- end -}}
+      <img class="site-image" src="{{ $src }}" alt="{{ $p.Params.image_alt }}" width="{{ $w }}" height="{{ $h }}" loading="lazy">
+    {{ end }}
+
+    <div class="site-body">{{ $p.Content }}</div>
+  </div>
+</section>
+
+{{- $first := index $p.Params.coordinates 0 -}}
+<section class="locator" aria-labelledby="map-title">
+  <div class="container medium">
+    <h2 id="map-title">Location</h2>
+    <div class="map-frame" data-map data-points="{{ jsonify $p.Params.coordinates }}" data-label="{{ $p.Title }}">
+      <p class="map-fallback"><a href="https://www.openstreetmap.org/?mlat={{ index $first 0 }}&amp;mlon={{ index $first 1 }}#map=11/{{ index $first 0 }}/{{ index $first 1 }}">View {{ $p.Title }} on OpenStreetMap</a></p>
+      <button type="button" class="button" data-map-load hidden>Show map</button>
+    </div>
+  </div>
+</section>
+
+{{- $news := slice -}}
+{{- range where site.RegularPages "Section" "posts" -}}
+  {{- if in (.Params.sites | default slice) $slug -}}{{- $news = $news | append . -}}{{- end -}}
+{{- end -}}
+<section class="sitenews" aria-labelledby="sitenews-title">
+  <div class="container medium">
+    <h2 id="sitenews-title">News from this site</h2>
+    {{ with first 3 (sort $news "Date" "desc") }}
+      <ul class="sitenews-list">
+        {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time></li>{{ end }}
+      </ul>
+    {{ else }}
+      <p class="empty">No news from this site yet. Updates appear here as the work starts.</p>
+    {{ end }}
+  </div>
+</section>
+
+{{ with $p.Params.references }}
+<section class="references" aria-labelledby="references-title">
+  <div class="container medium">
+    <h2 id="references-title">References</h2>
+    <ul>{{ range . }}<li>{{ .text }}{{ with .doi }}. <a href="https://doi.org/{{ . }}">doi:{{ . }}</a>{{ end }}</li>{{ end }}</ul>
+  </div>
+</section>
+{{ end }}
+
+{{- $all := partial "sites-by-latitude.html" $p -}}
+{{- $prev := false -}}{{- $next := false -}}
+{{- range $i, $s := $all -}}
+  {{- if eq $s.RelPermalink $p.RelPermalink -}}
+    {{- if gt $i 0 -}}{{- $prev = index $all (sub $i 1) -}}{{- end -}}
+    {{- if lt (add $i 1) (len $all) -}}{{- $next = index $all (add $i 1) -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+<nav class="sitenav" aria-label="Other sites, north to south">
+  <div class="container medium">
+    {{ with $prev }}<a rel="prev" href="{{ .RelPermalink }}"><span class="sitenav-dir">North</span> {{ .Title }}</a>{{ end }}
+    {{ with $next }}<a rel="next" href="{{ .RelPermalink }}"><span class="sitenav-dir">South</span> {{ .Title }}</a>{{ end }}
+  </div>
+</nav>
+{{ end }}

@@ -1,0 +1,12 @@
+{{- /*
+  The site pages, north to south, by the latitude of their first coordinate.
+  @context {page} any page
+  @returns {slice} of pages
+*/ -}}
+{{- $rows := slice -}}
+{{- range where site.RegularPages "Section" "sites" -}}
+  {{- $rows = $rows | append (dict "lat" (float (index (index .Params.coordinates 0) 0)) "page" .) -}}
+{{- end -}}
+{{- $pages := slice -}}
+{{- range sort $rows "lat" "desc" -}}{{- $pages = $pages | append .page -}}{{- end -}}
+{{- return $pages -}}

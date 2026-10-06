@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 # `--environment test`: not production, so the CSS bundle is unminified and readable
 # by the tests (CI's production build still minifies and fingerprints it).
-HUGO = ["hugo", "--panicOnWarning", "--environment", "test", "--baseURL", "https://aquicirc.eu/", "--quiet"]
+HUGO = ["hugo", "--panicOnWarning", "--environment", "test", "--baseURL", "https://aquicirc.eu/"]
 COPY_IGNORE = shutil.ignore_patterns(".git", ".pixi", ".superpowers", "public", "resources", "*.pdf", "*.txt")
 
 

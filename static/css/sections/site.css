@@ -1,0 +1,21 @@
+/* -- site page ---------------------------------------------------------- */
+section.site { padding-block: var(--brick-space) 0; }
+section.site .site-where { color: var(--textMedium); margin-block: -1rem 2rem; }
+dl.facts {
+    display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.5rem;
+    background: color-mix(in srgb, var(--sediment) 18%, var(--page));
+    border-inline-start: 0.25rem solid var(--sediment);
+    padding: 1.25rem 1.5rem; margin-block: 0 2.5rem; border-radius: var(--radius-s);
+}
+dl.facts dt { font-family: var(--fontTitles); font-weight: 600; }
+dl.facts dd { margin: 0; }
+@media (width < 36rem) { dl.facts { grid-template-columns: 1fr; } dl.facts dd { margin-block-end: 0.5rem; } }
+.site-image { width: 100%; height: auto; border-radius: var(--radius); margin-block: 1rem 2rem; }
+section.locator, section.sitenews, section.references { padding-block: 2rem; }
+.map-frame { min-height: 22rem; border-radius: var(--radius); background: var(--porewater); display: grid; place-content: center; gap: 1rem; text-align: center; padding: 1rem; }
+.map-frame.loaded { display: block; padding: 0; overflow: hidden; }
+nav.sitenav { padding-block: 2rem var(--brick-space); }
+nav.sitenav .container { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+nav.sitenav a { display: inline-flex; flex-direction: column; min-height: 2.75rem; }
+nav.sitenav a[rel="next"] { margin-inline-start: auto; text-align: end; }
+.sitenav-dir { font-family: var(--fontTitles); font-size: 0.85rem; color: var(--textMedium); }
