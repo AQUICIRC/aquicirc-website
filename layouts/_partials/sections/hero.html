@@ -1,0 +1,13 @@
+{{- /*
+  Brick: hero
+  The home opener on navy: h1, lead, two buttons, strata band on its lower edge.
+  Placed with `---.hero` at the top of content/en/_index.md.
+  @context {dict} . Content, Name, Index, Page
+*/ -}}
+{{- $label := partial "section_label.html" .Content -}}
+<section class="hero"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
+    <div class="container medium">
+        {{ .Content }}
+    </div>
+    {{ partial "strata.html" . }}
+</section>

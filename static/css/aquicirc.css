@@ -46,8 +46,8 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 
 /* Strata band (decorative) */
 .strata { display: block; width: 100%; height: 3rem; }
-.strata .land { fill: var(--sediment); opacity: 0.7; }
-.strata .vadose { fill: var(--sediment); opacity: 0.35; }
+.strata .land { fill: var(--sediment); }
+.strata .vadose { fill: color-mix(in srgb, var(--sediment) 40%, var(--page)); }
 .strata .aquifer { fill: var(--porewater); }
 .strata .watertable { stroke: var(--recharge); stroke-width: 2; fill: none; vector-effect: non-scaling-stroke; }
 @media (forced-colors: active) { .strata { display: none; } }
@@ -62,3 +62,9 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 .sitefooter .funders { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; padding: 0; margin: 1rem 0 0; }
 .sitefooter .funders:empty { display: none; }
 .sitefooter .funders img { height: 3rem; width: auto; }
+
+/* The logo is full colour: never invert it on dark chrome (v2 assumes a monochrome logo). */
+.sitefooter.dark .logo img, .siteheader.dark .logo img { filter: none; }
+
+/* Left-aligned collection intros (spec §7.3); v2 centres them. */
+section.collection > .container.small { text-align: start; max-width: var(--measure-wide); }

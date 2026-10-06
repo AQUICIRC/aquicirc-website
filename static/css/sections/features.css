@@ -2,7 +2,7 @@
    Intro from the markdown, cards from data/<lang>/features.yaml.        */
 
 section.features > .container > ul { gap: 3rem; margin-bottom: 2rem;}
-section.features li { text-align: center; }
+section.features li { text-align: start; }   /* AQUICIRC: left-aligned (was center) */
 
 /* The icon. `--accent` masked through the glyph, the same trick the review
    stars and the map marker use, rather than the theme's `filter: contrast()

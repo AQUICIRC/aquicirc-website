@@ -54,3 +54,4 @@ would be required for core functionality, redesign instead.
 - `layouts/baseof.html`: Archivo preload, `<link rel="expect" href="#main" blocking="render">`.
 - `data/settings.yaml`: `intersectionobserver: false`.
 - `layouts/_partials/site/footer.html`: contact email, funding statement wrapper + `funders` logo list from `data/en/footer.yaml`.
+- `static/css/sections/features.css`: feature cards left-aligned (was centred).
