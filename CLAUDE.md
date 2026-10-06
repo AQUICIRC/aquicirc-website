@@ -53,3 +53,4 @@ would be required for core functionality, redesign instead.
 - `layouts/_partials/site/styles.html`: bundles `css/aquicirc.css`.
 - `layouts/baseof.html`: Archivo preload, `<link rel="expect" href="#main" blocking="render">`.
 - `data/settings.yaml`: `intersectionobserver: false`.
+- `layouts/_partials/site/footer.html`: contact email, funding statement wrapper + `funders` logo list from `data/en/footer.yaml`.

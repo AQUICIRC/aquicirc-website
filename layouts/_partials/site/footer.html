@@ -38,7 +38,13 @@
 
     <div class="colophon">
         <div class="container">
-            {{ with $d.footer.footer_text }}<div>{{ . | markdownify }}</div>{{ end }}
+            {{ with $d.general.contact.email }}<p class="contact"><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
+            {{ with $d.footer.footer_text }}<div class="funding">{{ . | markdownify }}</div>{{ end }}
+            <ul class="funders" aria-label="Funders">
+                {{- range $d.footer.funders -}}
+                <li><a href="{{ .url }}" rel="noopener"><img src="{{ .logo }}" alt="{{ .name }}" height="48" loading="lazy"></a></li>
+                {{- end -}}
+            </ul>
 
             {{ partial "site/languageswitch.html" (dict "Page" . "Label" "Change language") }}
         </div>

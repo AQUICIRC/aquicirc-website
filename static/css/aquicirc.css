@@ -58,3 +58,7 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
     html { scroll-behavior: smooth; }
 }
 ::view-transition-group(*) { animation-duration: 0.3s; }
+
+.sitefooter .funders { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+.sitefooter .funders:empty { display: none; }
+.sitefooter .funders img { height: 3rem; width: auto; }

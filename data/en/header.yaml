@@ -1,7 +1,12 @@
 logo_image: /uploads/branding/aquicirc-logo.png
 logo_subtitle: Managed aquifer recharge for a circular water future
 dark_header: false
-mobile_view_width: 1100
-menuitems: []
+mobile_view_width: 1000
+menuitems:
+  - { title: About, link: /about/ }
+  - { title: Case studies, link: /sites/ }
+  - { title: Consortium, link: /consortium/ }
+  - { title: News, link: /news/ }
+  - { title: Outputs, link: /outputs/ }
 cta:
   active: false

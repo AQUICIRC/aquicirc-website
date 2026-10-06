@@ -1,4 +1,13 @@
 logo_image: /uploads/branding/aquicirc-logo.png
 menuitems: []
-socials: []
-footer_text: AQUICIRC is a Water4All research project. Site built with [Hugobricks](https://github.com/jhvanderschee/hugobricks_v2).
+socials:
+  - title: LinkedIn
+    link: "https://www.linkedin.com/"   # TODO(content): AQUICIRC LinkedIn page
+    logo_image: /img/linkedin.svg
+  - title: Bluesky
+    link: "https://bsky.app/"           # TODO(content): AQUICIRC Bluesky profile
+    logo_image: /img/bluesky.svg
+# TODO(content): exact funding statement and grant number.
+footer_text: >-
+  AQUICIRC is funded through the Water4All partnership, co-funded by the European Union.
+funders: []   # TODO(content): {name, logo, url} for Water4All, the EU emblem and national agencies
