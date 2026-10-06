@@ -12,7 +12,7 @@ dl.facts dd { margin: 0; }
 @media (width < 36rem) { dl.facts { grid-template-columns: 1fr; } dl.facts dd { margin-block-end: 0.5rem; } }
 .site-image { width: 100%; height: auto; border-radius: var(--radius); margin-block: 1rem 2rem; }
 section.locator, section.sitenews, section.references { padding-block: 2rem; }
-.map-frame { min-height: 22rem; border-radius: var(--radius); background: var(--porewater); display: grid; place-content: center; gap: 1rem; text-align: center; padding: 1rem; }
+.map-frame { min-height: 22rem; border-radius: var(--radius); background: var(--porewater); display: grid; place-content: start center; gap: 1rem; text-align: center; padding: 8rem 1rem 1rem; }   /* top-aligned: the JS-revealed button must not shift the link (CLS) */
 .map-frame.loaded { display: block; padding: 0; overflow: hidden; }
 nav.sitenav { padding-block: 2rem var(--brick-space); }
 nav.sitenav .container { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }

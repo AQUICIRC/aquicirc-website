@@ -42,3 +42,15 @@ def test_section_fade_ins_are_off():
     from pathlib import Path
     settings = yaml.safe_load((Path(__file__).resolve().parents[1] / "data/settings.yaml").read_text())
     assert settings["intersectionobserver"] is False
+
+
+def test_logo_is_resized_for_display(site, html):
+    img = html("/").select_one("header .logo img")
+    assert img["src"].endswith(".webp")
+    assert (site / img["src"].lstrip("/")).stat().st_size < 20_000
+
+
+def test_empty_states_do_not_pull_the_italic_face(css):
+    import re
+    rule = re.search(r"\.empty\s*{[^}]*}", css()).group(0)
+    assert "italic" not in rule

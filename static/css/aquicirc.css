@@ -42,7 +42,7 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 }
 
 /* Empty states */
-.empty { color: var(--textMedium); font-style: italic; }
+.empty { color: var(--textMedium); }   /* not italic: that face would load just for this */
 
 /* Strata band (decorative) */
 .strata { display: block; width: 100%; height: 3rem; }

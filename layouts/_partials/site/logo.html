@@ -5,7 +5,17 @@
 */ -}}
 {{- $d := partial "data.html" .Page -}}
 <a class="logo" href="{{ "/" | relLangURL }}#top" rel="home">
-    {{ with .Logo }}<img src="{{ . }}" alt="" width="48" height="48">{{ end }}
+    {{- with .Logo -}}
+        {{- /* AQUICIRC: a raster logo is resized for its 48px slot (2x density). */ -}}
+        {{- $src := . -}}{{- $w := 48 -}}{{- $h := 48 -}}
+        {{- with resources.GetMatch . -}}
+            {{- if in (slice "png" "jpg" "jpeg" "webp") .MediaType.SubType -}}
+                {{- $img := .Resize "96x webp q85" -}}
+                {{- $src = $img.RelPermalink -}}{{- $h = div (mul $img.Height 48) 96 -}}
+            {{- end -}}
+        {{- end }}
+    <img src="{{ $src }}" alt="" width="{{ $w }}" height="{{ $h }}">
+    {{- end }}
     <span>
         <strong>{{ $d.general.title }}</strong>
         {{ with $d.header.logo_subtitle }}<small>{{ . }}</small>{{ end }}
