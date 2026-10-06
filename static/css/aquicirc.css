@@ -102,3 +102,10 @@ nav[aria-label="Breadcrumb"] ol, ul.breadcrumbs { justify-content: flex-start; }
 
 /* Tabs are controls: they wear the title face, like buttons. */
 .tabs > [role="tablist"] > [role="tab"] { font-family: var(--fontTitles); font-weight: 600; font-size: 1.1rem; min-height: 2.75rem; }
+
+/* Partner strip (Home): lives here because it sits in a plain section, not the partners brick. */
+ul.partnerstrip { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; }
+ul.partnerstrip li { font-family: var(--fontTitles); font-size: 0.95rem; }
+ul.partnerstrip a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+ul.partnerstrip img { height: 2.5rem; width: auto; filter: grayscale(1); }
+ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }

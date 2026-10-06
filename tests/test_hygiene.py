@@ -36,3 +36,12 @@ def test_brick_includes_are_not_published(site):
 def test_404_copy(html):
     doc = html("/404.html")
     assert doc.find("h1").get_text(strip=True) == "This page does not exist"
+
+
+def test_no_generic_link_text(site):
+    """Every link's accessible text says where it goes (Lighthouse link-text, WCAG 2.4.4)."""
+    generic = {"read more", "more", "click here", "here", "learn more"}
+    for page in site.rglob("*.html"):
+        doc = BeautifulSoup(page.read_text(encoding="utf-8"), "html.parser")
+        for a in doc.find_all("a"):
+            assert a.get_text(" ", strip=True).lower() not in generic, f"{page.relative_to(site)}: {a}"

@@ -50,14 +50,29 @@
         {{- $css = $css | append . -}}
     {{- end -}}
 {{- end -}}
+{{- /* AQUICIRC: only the bricks this page uses (spec §8). The page's own
+       section list comes from `section_map.html` (cached, shared with the
+       renderer); the two whole-page layouts name theirs. Each distinct set of
+       bricks gets its own bundle name, so caching stays correct. */ -}}
+{{- $bricks := slice "default" "title" -}}
+{{- if and .IsPage (eq .Section "sites") -}}
+    {{- $bricks = $bricks | append "site" -}}
+{{- else if and .IsPage (eq .Section "posts") -}}
+    {{- $bricks = $bricks | append "post" "cta" -}}
+{{- else -}}
+    {{- range partialCached "section_map.html" . .RelPermalink -}}{{- $bricks = $bricks | append .Name -}}{{- end -}}
+{{- end -}}
+{{- $bricks = sort (uniq $bricks) -}}
 {{- if $withSectionStyles -}}
-    {{- $css = $css | append (resources.Match "css/sections/*.css") -}}
+    {{- range $bricks -}}
+        {{- with resources.Get (printf "css/sections/%s.css" .) -}}{{- $css = $css | append . -}}{{- end -}}
+    {{- end -}}
 {{- end -}}
 {{- /* Not `css/style.css`: `assetDir` is `static`, so the source files are
        also published verbatim, and in development the bundle keeps its plain
        name — a bundle called `css/style.css` would collide with the copy of
        `static/css/style.css` at that same URL. */ -}}
-{{- $css = $css | resources.Concat "css/bundle.css" -}}
+{{- $css = $css | resources.Concat (printf "css/bundle-%s.css" (delimit $bricks "-")) -}}
 {{- if hugo.IsProduction -}}
     {{- $css = $css | minify | fingerprint -}}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
