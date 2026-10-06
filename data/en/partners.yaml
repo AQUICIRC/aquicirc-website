@@ -1,0 +1,80 @@
+- id: wu
+  name: Wageningen University & Research
+  short: WUR
+  country: Netherlands
+  url: https://www.wur.nl/
+  logo: ""            # TODO(content): partner logo (SVG preferred)
+  role: coordinator
+  wps: [WP1]
+- id: su
+  name: Stellenbosch University
+  short: SU
+  country: South Africa
+  url: https://www.sun.ac.za/
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP2]
+- id: uwc
+  name: University of the Western Cape
+  short: UWC
+  country: South Africa
+  url: https://www.uwc.ac.za/
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP2]
+- id: iot
+  name: Io-Things
+  short: IoT
+  country: Belgium
+  url: ""             # TODO(content): Io-Things website
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP3]
+- id: vub
+  name: Vrije Universiteit Brussel
+  short: VUB
+  country: Belgium
+  url: https://www.vub.be/
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP3]
+- id: unipd
+  name: University of Padova
+  short: UNIPD
+  country: Italy
+  url: https://www.unipd.it/
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP4]
+- id: upc
+  name: Polytechnic University of Catalonia
+  short: UPC
+  country: Spain
+  url: https://www.upc.edu/
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP5]
+- id: inat
+  name: National Agronomic Institute of Tunisia
+  short: INAT
+  country: Tunisia
+  url: ""             # TODO(content): INAT website
+  logo: ""            # TODO(content): partner logo
+  role: wp-lead
+  wps: [WP6]
+- id: csir
+  name: Council for Scientific and Industrial Research
+  short: CSIR
+  country: South Africa
+  url: https://www.csir.co.za/
+  logo: ""            # TODO(content): partner logo
+  role: partner
+  wps: []
+- id: umvoto
+  name: Umvoto
+  short: Umvoto
+  country: South Africa
+  url: ""             # TODO(content): Umvoto website
+  logo: ""            # TODO(content): partner logo
+  role: partner
+  wps: []

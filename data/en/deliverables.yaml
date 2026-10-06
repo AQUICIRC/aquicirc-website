@@ -1,0 +1,20 @@
+# TODO(content): confirm the status of every deliverable due so far.
+- { id: D1.1, title: Data management plan, wp: WP1, due: Y1Q2, status: planned }
+- { id: D1.2, title: Consortium agreement, wp: WP1, due: Y1Q2, status: planned }
+- { id: D1.3a, title: Interim report, wp: WP1, due: Y2Q3, status: planned }
+- { id: D1.3b, title: Final report, wp: WP1, due: Y3Q4, status: planned }
+- { id: D2.1, title: Case study site profiles, wp: WP2, due: Y1Q4, status: planned }
+- { id: D2.2, title: Cross-site performance evaluation report, wp: WP2, due: Y1Q4, status: planned }
+- { id: D3.1, title: Installation completion report, wp: WP3, due: Y2Q2, status: planned }
+- { id: D3.2, title: Site-specific sampling protocols, wp: WP3, due: Y2Q2, status: planned }
+- { id: D3.3, title: Hydrogeochemical monitoring database, wp: WP3, due: Y2Q4, status: planned }
+- { id: D4.1, title: Site-specific flow model datasets and files, wp: WP4, due: Y3Q1, status: planned }
+- { id: D4.2, title: Reactive transport modelling dataset and model files, wp: WP4, due: Y3Q2, status: planned }
+- { id: D4.3, title: Scenario analysis datasets and outputs, wp: WP4, due: Y3Q4, status: planned }
+- { id: D5.1, title: Optimisation strategy report, wp: WP5, due: Y2Q3, status: planned }
+- { id: D5.2, title: Pilot test evaluation report, wp: WP5, due: Y3Q1, status: planned }
+- { id: D5.3, title: Cross-site optimisation guidelines, wp: WP5, due: Y3Q4, status: planned }
+- { id: D6.1a, title: Workshop summary reports (kick-off), wp: WP6, due: Y1Q2, status: planned }
+- { id: D6.1b, title: Workshop summary reports (final), wp: WP6, due: Y3Q2, status: planned }
+- { id: D6.2, title: Scientific publications and repository index, wp: WP6, due: Y3Q4, status: planned }
+- { id: D6.3, title: Project website, wp: WP6, due: Y1Q2, status: public, url: "https://aquicirc.eu/" }

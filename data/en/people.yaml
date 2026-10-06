@@ -1,0 +1,9 @@
+# TODO(content): confirm consent to list both advisory board members; add the team.
+- name: Ricky Murray
+  function: Project advisory board, Africa
+  group: advisory
+  description: Hydrogeologist with more than 35 years of groundwater and MAR experience across southern and eastern Africa; principal architect of South Africa's Artificial Recharge Strategy.
+- name: Sarah Garré
+  function: Project advisory board, Europe
+  group: advisory
+  description: Expert in water, soil functioning and agricultural hydrology (ILVO, KU Leuven, ULiège), with experience in research that links science, policy and society.
