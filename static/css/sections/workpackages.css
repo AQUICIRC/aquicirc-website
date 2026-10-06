@@ -1,0 +1,26 @@
+/* -- brick: workpackages (spec §6.2) ------------------------------------- */
+section.workpackages { padding-block: var(--brick-space); }
+.wp-flow { display: grid; gap: 0.75rem; margin-block-start: 2rem; }
+.wp-sequence { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+@media (width < 56rem) { .wp-sequence { grid-template-columns: 1fr; } }
+details.wp { border: 1px solid var(--borderMedium); border-radius: var(--radius-s); background: var(--page); }
+details.wp-span { background: var(--porewater); }
+details.wp > summary { display: grid; gap: 0.15rem; padding: 0.9rem 1rem; cursor: pointer; min-height: 2.75rem; }
+.wp-id { font-family: var(--fontTitles); font-weight: 700; color: var(--flow); }
+.wp-title { font-family: var(--fontTitles); font-weight: 600; }
+.wp-lead { font-size: 0.9rem; color: var(--textMedium); }
+.wp-body { padding: 0 1rem 1rem; }
+.wp-body h4 { margin-block: 1rem 0.25rem; }
+.wp-sequence li:not(:last-child) details.wp { position: relative; }
+@media (width >= 56rem) {
+    .wp-sequence li:not(:last-child) details.wp::after {
+        content: ""; position: absolute; top: 1.4rem; right: -0.75rem; width: 0.75rem; height: 2px; background: var(--flow);
+    }
+}
+@media (prefers-reduced-motion: no-preference) {
+    @supports (interpolate-size: allow-keywords) {
+        details.wp { interpolate-size: allow-keywords; }
+        details.wp::details-content { height: 0; overflow: clip; transition: height 0.25s ease, content-visibility 0.25s; transition-behavior: allow-discrete; }
+        details.wp[open]::details-content { height: auto; }
+    }
+}

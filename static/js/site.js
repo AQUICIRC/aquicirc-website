@@ -265,4 +265,18 @@
         host.addEventListener("pointerleave", function () { host.classList.remove("dismissed"); });
         host.addEventListener("focusout", function () { host.classList.remove("dismissed"); });
     });
+
+    /* -- timeline "today" ----------------------------------------------
+       Placed from the visitor's clock so it stays right between builds;
+       outside the project period it stays hidden. */
+    Array.prototype.forEach.call(document.querySelectorAll(".timeline .today"), function (el) {
+        var start = new Date(el.getAttribute("data-start") + "T00:00:00");
+        var end = new Date(start);
+        end.setMonth(end.getMonth() + Number(el.getAttribute("data-months")));
+        var f = (Date.now() - start) / (end - start);
+        if (f >= 0 && f <= 1) {
+            el.style.setProperty("--today", f.toFixed(4));
+            el.hidden = false;
+        }
+    });
 })();

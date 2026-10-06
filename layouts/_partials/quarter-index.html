@@ -1,0 +1,3 @@
+{{- /* "Y2Q3" → 6 (0-based quarter index from project start). */ -}}
+{{- $y := int (substr . 1 1) -}}{{- $q := int (substr . 3 1) -}}
+{{- return add (mul (sub $y 1) 4) (sub $q 1) -}}

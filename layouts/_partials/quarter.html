@@ -1,0 +1,4 @@
+{{- /* "Y2Q3" → "Q3 2027", from data/project.yaml start year. */ -}}
+{{- $start := time.AsTime hugo.Data.project.start -}}
+{{- $y := int (substr . 1 1) -}}
+{{- return printf "Q%s %d" (substr . 3 1) (add $start.Year (sub $y 1)) -}}

@@ -64,3 +64,4 @@ would be required for core functionality, redesign instead.
 - `static/css/sections/post.css`: post header left-aligned (was centred).
 - `hugo.yaml`: posts published under `/news/`.
 - Post front matter uses `case_sites` (not `sites`, which Hugo reserves).
+- `static/js/site.js`: timeline "today" marker.

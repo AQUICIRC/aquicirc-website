@@ -1,0 +1,21 @@
+{{- /* Brick: workpackages — flow WP2→WP5 with WP1 and WP6 spanning (spec §6.2). */ -}}
+{{- $label := partial "section_label.html" .Content -}}
+{{- $d := partial "data.html" .Page -}}
+<section class="workpackages"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
+  <div class="container">
+    {{ .Content }}
+    <div class="wp-flow">
+      {{- range $d.workpackages -}}
+        {{- if eq .id "WP1" -}}{{ partial "wp-item.html" (dict "wp" . "d" $d "span" true) }}{{- end -}}
+      {{- end -}}
+      <ol class="wp-sequence">
+        {{- range $d.workpackages -}}
+          {{- if in (slice "WP2" "WP3" "WP4" "WP5") .id -}}<li>{{ partial "wp-item.html" (dict "wp" . "d" $d "span" false) }}</li>{{- end -}}
+        {{- end -}}
+      </ol>
+      {{- range $d.workpackages -}}
+        {{- if eq .id "WP6" -}}{{ partial "wp-item.html" (dict "wp" . "d" $d "span" true) }}{{- end -}}
+      {{- end -}}
+    </div>
+  </div>
+</section>
