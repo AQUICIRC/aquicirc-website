@@ -1,0 +1,11 @@
+{{- $d := partial "data.html" .Page -}}
+{{- $kinds := dict "data" "Dataset" "model" "Model" "code" "Code" -}}
+{{- with $d.datasets -}}
+<ul class="datasets">
+{{- range . -}}
+<li><a href="{{ .url }}">{{ .title }}</a> <span class="kind">{{ index $kinds .kind }}</span><br>{{ .description }}</li>
+{{- end -}}
+</ul>
+{{- else -}}
+<p class="empty">No datasets or models yet. Each will be published openly on Zenodo or GitHub as it is released.</p>
+{{- end -}}

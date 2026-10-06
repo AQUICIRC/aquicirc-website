@@ -1,0 +1,10 @@
+{{- $d := partial "data.html" .Page -}}
+{{- with sort ($d.publications | default slice) "year" "desc" -}}
+<ol class="publications">
+{{- range . -}}
+<li>{{ .authors }} ({{ .year }}). <cite>{{ .title }}</cite>. {{ .venue }}.{{ with .doi }} <a href="https://doi.org/{{ . }}">doi:{{ . }}</a>{{ end }}</li>
+{{- end -}}
+</ol>
+{{- else -}}
+<p class="empty">No publications yet. The first open-access articles are expected in 2027.</p>
+{{- end -}}

@@ -227,7 +227,8 @@
             Array.prototype.forEach.call(tabs, function (tab, i) {
                 tab.setAttribute("aria-selected", i === chosen ? "true" : "false");
                 tab.tabIndex = i === chosen ? 0 : -1;
-                panels[i].hidden = i !== chosen;
+                if (i === chosen) panels[i].removeAttribute("hidden");
+                else panels[i].setAttribute("hidden", "until-found");
             });
         };
 
@@ -244,6 +245,11 @@
                 select(to);
                 tabs[to].focus();
             });
+        });
+
+        /* In-page search and deep links open the tab that holds the match. */
+        Array.prototype.forEach.call(panels, function (panel, i) {
+            panel.addEventListener("beforematch", function () { select(i); });
         });
 
         select(0);

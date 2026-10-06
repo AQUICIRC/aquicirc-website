@@ -1,0 +1,23 @@
+{{- $d := partial "data.html" .Page -}}
+{{- $labels := dict "planned" "Planned" "submitted" "Submitted" "public" "Public" -}}
+{{- $icons := dict
+      "planned" `<circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/>`
+      "submitted" `<circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/>`
+      "public" `<circle cx="8" cy="8" r="7" fill="currentColor"/>` -}}
+<div class="datatable-frame" role="region" aria-labelledby="deliverables-caption" tabindex="0">
+<table class="datatable deliverables">
+<caption id="deliverables-caption">Deliverables by work package</caption>
+<thead><tr><th scope="col">Deliverable</th><th scope="col">Title</th><th scope="col">Work package</th><th scope="col">Due</th><th scope="col">Status</th></tr></thead>
+<tbody>
+{{- range $d.deliverables -}}
+<tr>
+<th scope="row">{{ .id }}</th>
+<td><span class="cell-label" aria-hidden="true">Title</span>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .title }}{{ with .url }}</a>{{ end }}</td>
+<td><span class="cell-label" aria-hidden="true">Work package</span><a href="/about/#wp-{{ .wp }}">{{ .wp }}</a></td>
+<td><span class="cell-label" aria-hidden="true">Due</span>{{ partial "quarter.html" .due }}</td>
+<td><span class="cell-label" aria-hidden="true">Status</span><span class="status status-{{ .status }}"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">{{ index $icons .status | safeHTML }}</svg>{{ index $labels .status }}</span></td>
+</tr>
+{{- end -}}
+</tbody>
+</table>
+</div>

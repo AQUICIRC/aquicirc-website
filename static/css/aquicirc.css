@@ -94,3 +94,11 @@ section.sitecompare { padding-block: var(--brick-space); }
 
 /* Breadcrumbs follow the left-aligned headings they sit above (v2 centres them). */
 nav[aria-label="Breadcrumb"] ol, ul.breadcrumbs { justify-content: flex-start; }
+
+.status { display: inline-flex; align-items: center; gap: 0.4rem; }
+.status-public { color: var(--flow); }
+.publications li, .datasets li { margin-block-end: 0.75rem; }
+.datasets .kind { font-size: 0.85rem; color: var(--textMedium); }
+
+/* Tabs are controls: they wear the title face, like buttons. */
+.tabs > [role="tablist"] > [role="tab"] { font-family: var(--fontTitles); font-weight: 600; font-size: 1.1rem; min-height: 2.75rem; }

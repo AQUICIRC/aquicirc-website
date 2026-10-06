@@ -65,3 +65,5 @@ would be required for core functionality, redesign instead.
 - `hugo.yaml`: posts published under `/news/`.
 - Post front matter uses `case_sites` (not `sites`, which Hugo reserves).
 - `static/js/site.js`: timeline "today" marker.
+- `static/js/site.js`: inactive tab panels use `hidden="until-found"`; `beforematch` selects the tab.
+- `static/css/sections/wide.css`: page h1 left-aligned (was centred).

@@ -1,5 +1,5 @@
 /* -- brick: wide ---------------------------------------------------------
    Plain measure brick for long-form pages.                               */
 
-section.wide h1 { text-align: center; margin-block-end: 3.75rem;}
+section.wide h1 { text-align: start; margin-block-end: 1.75rem;}   /* AQUICIRC: left-aligned (was center, 3.75rem) */
 section.wide > .container { max-inline-size: var(--measure-medium); }
