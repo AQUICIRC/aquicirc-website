@@ -1,5 +1,6 @@
 ---
 title: Swinkels Family Brewery, Lieshout
+teaser: "A brewery plans to recharge the local aquifer with its treated wastewater through subsurface irrigation."
 country: Netherlands
 location: Lieshout, North Brabant
 coordinates: [[51.52, 5.60]]   # TODO(content): confirm with WUR

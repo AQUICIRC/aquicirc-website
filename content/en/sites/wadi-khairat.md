@@ -1,5 +1,6 @@
 ---
 title: Wadi Khairat
+teaser: "Releases from a hill dam recharge a semi-arid aquifer through check dams, basins and injection wells."
 country: Tunisia
 location: Sousse governorate
 coordinates: [[36.13, 10.38]]   # TODO(content): confirm with INAT

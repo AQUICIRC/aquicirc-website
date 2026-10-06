@@ -10,7 +10,7 @@ details.wp > summary { display: grid; gap: 0.15rem; padding: 0.9rem 1rem; cursor
 .wp-title { font-family: var(--fontTitles); font-weight: 600; }
 .wp-lead { font-size: 0.9rem; color: var(--textMedium); }
 .wp-body { padding: 0 1rem 1rem; }
-.wp-body h3 { margin-block: 1rem 0.25rem; font-size: 1rem; }
+.wp-body p { margin: 0; }
 .wp-sequence li:not(:last-child) details.wp { position: relative; }
 @media (width >= 56rem) {
     .wp-sequence li:not(:last-child) details.wp::after {

@@ -31,12 +31,6 @@ def test_workpackage_leads_are_partners():
         assert set(wp["leads"]) <= partners, wp["id"]
 
 
-def test_tasks_have_valid_ordered_quarters():
-    for wp in load("workpackages"):
-        for t in wp["tasks"]:
-            assert QUARTER.match(t["start"]) and QUARTER.match(t["end"]), t["id"]
-            assert qindex(t["start"]) <= qindex(t["end"]), t["id"]
-
 
 def test_deliverables_reference_real_wps_and_states():
     wps = {wp["id"] for wp in load("workpackages")}

@@ -1,5 +1,6 @@
 ---
 title: Besòs river basin
+teaser: "Reclaimed water passes through a reed-planted pretreatment zone before it is injected into the aquifer."
 country: Spain
 location: North of Barcelona
 coordinates: [[41.44, 2.19]]   # TODO(content): confirm with UPC

@@ -1,0 +1,13 @@
+/* -- brick: sitesmap ------------------------------------------------------ */
+section.sitesmap { background: var(--porewater); padding-block: var(--brick-space); }
+.sitesmap-intro > :last-child { max-width: 62ch; }
+.sitesmap-body { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 2rem; align-items: start; margin-block-start: 2rem; }
+@media (width < 52rem) { .sitesmap-body { grid-template-columns: 1fr; } }
+.sitesmap-frame { height: 30rem; border-radius: var(--radius); background: var(--page); border: 1px solid var(--borderLight); overflow: hidden; }
+@media (width < 52rem) { .sitesmap-frame { height: 24rem; } }
+.sitesmap-list { margin: 0; padding: 0; list-style: none; counter-reset: site; }
+.sitesmap-list li { display: flex; flex-direction: column; padding-block: 0.6rem; border-block-end: 1px solid var(--borderMedium); }
+.sitesmap-list li:first-child { padding-block-start: 0; }
+.sitesmap-list a { font-family: var(--fontTitles); font-weight: 600; min-height: 1.75rem; }
+.sitesmap-list span { font-size: 0.9rem; color: var(--textMedium); }
+.sitesmap-credit { font-size: 0.85rem; color: var(--textMedium); margin-block: 1rem 0; }

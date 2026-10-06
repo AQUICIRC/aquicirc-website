@@ -1,11 +1,31 @@
 # AQUICIRC website — design spec
 
-Date: 2026-10-06 · Revision 2 · Status: draft for review · Owner: Mateusz Zawadzki
+Date: 2026-10-06 · Revision 3 · Status: approved, revised after preview · Owner: Mateusz Zawadzki
 
 Written with these skills applied: **frontend-design** (identity, layout, copy),
 **dataviz** (transect, timeline, status), **modern-web-guidance** (each interactive pattern,
 with the guide id cited), **chrome-devtools a11y-debugging** and **debug-optimize-lcp**
 (verification, §11).
+
+## Revision 3 — owner feedback after the first preview (2026-10-06)
+
+These supersede the sections they name; everything else stands.
+
+- **Home hero (§4):** carries the former About opener ("Recharging aquifers with water we
+  used to waste" + two paragraphs). Buttons *See the six sites* and *See outputs*, stacked on
+  the right of the text (below it on phones). About opens with "About AQUICIRC" instead.
+- **Sites map replaces the transect (§6.1, §7.3):** an OpenStreetMap map of all sites
+  (`sitesmap` brick) on Home and Case studies, beside a plain list of site links (keyboard,
+  screen-reader and no-JS route). It loads automatically after the page's `load` event once
+  it nears the viewport (owner chose this over click-to-load; a note under the map says the
+  tiles come from openstreetmap.org). Markers closer than 22px merge into a numbered marker;
+  each popup gives the site name, a one-sentence `teaser` (new required site front-matter
+  field) and a link to the site page. Markers are keyboard-focusable. The transect, its
+  scroll-driven animation and the page-to-page morph are removed; the root cross-fade stays.
+- **About (§6.2, §6.3):** no timeline. Work-package panels show 2–3 plain sentences each
+  (`summary` in `workpackages.yaml`); no tasks, dates or deliverables there. Deliverables
+  with due dates remain on Outputs.
+- **Advisory board:** Consortium only.
 
 ## 1. Purpose and success
 

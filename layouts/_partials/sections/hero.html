@@ -6,7 +6,7 @@
 */ -}}
 {{- $label := partial "section_label.html" .Content -}}
 <section class="hero"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
-    <div class="container medium">
+    <div class="container">
         {{ .Content }}
     </div>
     {{ partial "strata.html" . }}

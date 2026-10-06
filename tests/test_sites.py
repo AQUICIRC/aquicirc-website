@@ -1,12 +1,9 @@
-from sitedata import EXPECTED
-
-NORTH_TO_SOUTH = list(EXPECTED)   # derived from front matter, north → south
+from sitedata import NORTH_TO_SOUTH
 
 
 def test_every_site_page_builds_with_facts(html):
     for slug in NORTH_TO_SOUTH:
         doc = html(f"/sites/{slug}/")
-        assert doc.find("h1")["style"] == f"view-transition-name: site-{slug}"
         facts = doc.select_one("dl.facts")
         terms = [dt.get_text(strip=True) for dt in facts.find_all("dt")]
         assert terms[:4] == ["Climate", "Aquifer", "MAR system", "Source water"]
@@ -38,6 +35,22 @@ def test_missing_required_field_fails_build(build_variant):
     result = build_variant(break_it)
     assert result.returncode != 0
     assert 'missing required front matter "mar_system"' in result.stderr
+
+
+def test_missing_teaser_fails_build(build_variant):
+    def break_it(root):
+        p = root / "content/en/sites/kinrooi.md"
+        p.write_text(p.read_text().replace("teaser:", "old_teaser:"))
+    result = build_variant(break_it)
+    assert result.returncode != 0 and 'missing required front matter "teaser"' in result.stderr
+
+
+def test_swapped_coordinates_fail_build(build_variant):
+    def swap(root):
+        p = root / "content/en/sites/lieshout.md"
+        p.write_text(p.read_text().replace("[[51.52, 5.60]]", "[[5.60, 51.52]]"))
+    result = build_variant(swap)
+    assert result.returncode != 0 and "swapped" in result.stderr
 
 
 def test_image_without_alt_fails_build(build_variant):

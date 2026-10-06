@@ -1,5 +1,6 @@
 ---
 title: GROW pilot, Kinrooi
+teaser: "Treated domestic wastewater has fed a field's subsurface irrigation for three years, with the groundwater monitored throughout."
 country: Belgium
 location: Kinrooi, Limburg
 coordinates: [[51.15, 5.74]]   # TODO(content): confirm with VUB

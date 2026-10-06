@@ -4,9 +4,15 @@
 */ -}}
 {{ define "sections" }}
 {{- $p := . -}}
-{{- range slice "country" "coordinates" "mar_system" -}}
+{{- range slice "teaser" "country" "coordinates" "mar_system" -}}
   {{- if not (index $p.Params .) -}}
     {{- errorf "site page %q is missing required front matter %q" $p.File.Path . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $p.Params.coordinates -}}
+  {{- $lat := float (index . 0) -}}{{- $lon := float (index . 1) -}}
+  {{- if not (and (ge $lat -40.0) (le $lat 60.0) (ge $lon -20.0) (le $lon 30.0)) -}}
+    {{- errorf "site page %q: coordinate [%v, %v] is outside the project area (Europe to South Africa); coordinates are [lat, lon] — are they swapped?" $p.File.Path $lat $lon -}}
   {{- end -}}
 {{- end -}}
 {{- if and $p.Params.image (not $p.Params.image_alt) -}}
@@ -17,7 +23,7 @@
 <section class="site">
   <div class="container medium">
     {{ partial "site/breadcrumbs.html" $p }}
-    <h1 style="view-transition-name: site-{{ $slug }}">{{ $p.Title }}</h1>
+    <h1>{{ $p.Title }}</h1>
     <p class="site-where">{{ with $p.Params.location }}{{ . }}, {{ end }}{{ $p.Params.country }}</p>
 
     <dl class="facts">

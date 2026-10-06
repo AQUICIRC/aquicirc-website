@@ -1,0 +1,28 @@
+{{- /*
+  Brick: sitesmap — an OpenStreetMap map of every case-study site, loaded as
+  it nears the viewport (static/js/map.js), beside a plain list of the sites
+  that works without the map (keyboard, screen readers, no JS).
+  Placed with `---.sitesmap` (empty section → includes content/en/bricks/sitesmap.md).
+  @context {dict} . Content, Name, Index, Page
+*/ -}}
+{{- $label := partial "section_label.html" .Content -}}
+{{- $sites := partial "sites-by-latitude.html" .Page -}}
+{{- $data := slice -}}
+{{- range $sites -}}
+  {{- $data = $data | append (dict "name" .Title "url" .RelPermalink "teaser" .Params.teaser "points" .Params.coordinates) -}}
+{{- end -}}
+<section class="sitesmap"{{ with $label }} aria-labelledby="{{ . }}"{{ end }}>
+  <div class="container">
+    <div class="sitesmap-intro">{{ .Content }}</div>
+    <div class="sitesmap-body">
+      <div class="sitesmap-frame" data-sites="{{ jsonify $data }}" role="region" aria-label="Map of the case-study sites"></div>
+      <ol class="sitesmap-list">
+        {{- range $sites }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><span>{{ .Params.country }}</span></li>
+        {{- end }}
+      </ol>
+    </div>
+    <p class="sitesmap-credit">Map tiles and data from OpenStreetMap, loaded from openstreetmap.org when the map comes into view.</p>
+  </div>
+  <script src="/js/map.js" defer></script>
+</section>

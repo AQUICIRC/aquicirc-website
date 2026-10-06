@@ -33,13 +33,6 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
     clip-path: inset(50%); white-space: nowrap;
 }
 
-/* In-place reveal (transect, timeline): the .reveal child shows on hover or
-   focus of its [data-reveal] host, and Escape adds .dismissed (site.js). */
-[data-reveal] .reveal { visibility: hidden; opacity: 0; }
-[data-reveal]:is(:hover, :focus-within):not(.dismissed) .reveal { visibility: visible; opacity: 1; }
-@media (prefers-reduced-motion: no-preference) {
-    [data-reveal] .reveal { transition: opacity 0.15s ease, visibility 0.15s; }
-}
 
 /* Empty states */
 .empty { color: var(--textMedium); }   /* not italic: that face would load just for this */
@@ -112,3 +105,14 @@ ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }
 
 /* Focus on the navy footer: v2's darker accent ring is ~2:1 there; cyan clears 3:1. */
 .sitefooter.dark :focus-visible { outline-color: var(--recharge); }
+
+/* Markers and popups (sites map and site-page locator, so global). Prefixed with
+   Leaflet's own classes: leaflet.css loads after this bundle and would win a tie. */
+.leaflet-marker-icon.site-marker { background: var(--flow); border: 2px solid var(--page); border-radius: 50%; box-shadow: 0 0 0 1px rgb(15 42 63 / 0.35); }
+.leaflet-marker-icon.site-marker-group { display: grid; line-height: 1; place-items: center; color: #fff; font-family: var(--fontTitles); font-weight: 650; font-size: 0.8rem; }
+.site-popup + .site-popup { margin-block-start: 0.75rem; padding-block-start: 0.75rem; border-block-start: 1px solid var(--borderLight); }
+.leaflet-marker-icon.site-marker:focus-visible { outline: 0.2rem solid var(--aquifer); outline-offset: 0.15rem; }
+.leaflet-container .leaflet-popup-content { font-family: var(--fontBody); font-size: 0.95rem; line-height: 1.45; margin: 0.9rem 1rem; }
+.leaflet-container .leaflet-popup-content strong { font-family: var(--fontTitles); font-weight: 650; display: block; margin-block-end: 0.25rem; }
+.leaflet-container .leaflet-popup-content p { margin: 0 0 0.5rem; }
+.leaflet-container .leaflet-popup-content a { color: var(--flow); font-family: var(--fontTitles); font-weight: 600; }

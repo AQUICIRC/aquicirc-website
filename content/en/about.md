@@ -1,13 +1,11 @@
 ---
-summary: "How AQUICIRC studies safe managed aquifer recharge with unconventional water: objectives, work packages and timeline."
 title: About
+summary: "AQUICIRC (2026–2028, Water4All) works to make managed aquifer recharge with unconventional water safe and efficient. Its objectives and six work packages."
 ---
 
-# Recharging aquifers with water we used to waste
+# About AQUICIRC
 
-Managed aquifer recharge puts water back into the ground on purpose, where it is stored and cleaned on its way through the soil. Treated wastewater, industrial effluent and harvested rainwater can all be recharged, but they carry contaminants of emerging concern (pharmaceuticals, pesticides, PFAS) that conventional treatment does not remove and that move easily through groundwater.
-
-AQUICIRC asks how to recharge these waters safely: how much water the aquifer stores and gives back, and how much of each contaminant it removes on the way.
+AQUICIRC is a three-year research project (2026–2028) funded through the Water4All partnership. It aims to make managed aquifer recharge with treated wastewater, industrial effluent and harvested rainwater safe and efficient: storing more water, removing more contaminants of emerging concern, and turning what is learned at six sites into guidance for the people who run and regulate them.
 
 ---
 
@@ -18,11 +16,3 @@ AQUICIRC asks how to recharge these waters safely: how much water the aquifer st
 ---.workpackages
 
 ---
-
----.timeline
-
----
-
-## Advisory board
-
-{{< team group="advisory" >}}

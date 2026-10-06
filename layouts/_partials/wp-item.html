@@ -1,4 +1,4 @@
-{{- /* One work package as <details>. @context dict: wp, d, span */ -}}
+{{- /* One work package as <details>: number, title and lead; opened, a plain summary. @context dict: wp, d, span */ -}}
 {{- $wp := .wp -}}{{- $d := .d -}}
 {{- $leads := slice -}}
 {{- range $wp.leads -}}{{- $leads = $leads | append (index (where $d.partners "id" .) 0).short -}}{{- end -}}
@@ -10,11 +10,5 @@
   </summary>
   <div class="wp-body">
     <p>{{ $wp.summary }}</p>
-    <h3>Tasks</h3>
-    <ul>{{ range $wp.tasks }}<li><strong>{{ .id }}</strong> {{ .title }}, {{ partial "quarter.html" .start }} to {{ partial "quarter.html" .end }}</li>{{ end }}</ul>
-    {{ with where $d.deliverables "wp" $wp.id }}
-    <h3>Deliverables</h3>
-    <ul>{{ range . }}<li><strong>{{ .id }}</strong> {{ .title }}, due {{ partial "quarter.html" .due }}</li>{{ end }}</ul>
-    {{ end }}
   </div>
 </details>

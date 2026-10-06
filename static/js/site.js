@@ -256,34 +256,4 @@
         select(0);
         widget.classList.add("ready");
     });
-
-    /* -- in-place reveals ----------------------------------------------
-       [data-reveal] hosts show their .reveal on hover or focus (CSS).
-       Escape hides it without moving the pointer or focus (WCAG 1.4.13);
-       leaving the host re-arms it. */
-    document.addEventListener("keydown", function (event) {
-        if (event.key !== "Escape") return;
-        Array.prototype.forEach.call(
-            document.querySelectorAll("[data-reveal]:hover, [data-reveal]:focus-within"),
-            function (host) { host.classList.add("dismissed"); }
-        );
-    });
-    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function (host) {
-        host.addEventListener("pointerleave", function () { host.classList.remove("dismissed"); });
-        host.addEventListener("focusout", function () { host.classList.remove("dismissed"); });
-    });
-
-    /* -- timeline "today" ----------------------------------------------
-       Placed from the visitor's clock so it stays right between builds;
-       outside the project period it stays hidden. */
-    Array.prototype.forEach.call(document.querySelectorAll(".timeline .today"), function (el) {
-        var start = new Date(el.getAttribute("data-start") + "T00:00:00");
-        var end = new Date(start);
-        end.setMonth(end.getMonth() + Number(el.getAttribute("data-months")));
-        var f = (Date.now() - start) / (end - start);
-        if (f >= 0 && f <= 1) {
-            el.style.setProperty("--today", f.toFixed(4));
-            el.hidden = false;
-        }
-    });
 })();

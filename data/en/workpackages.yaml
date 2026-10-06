@@ -1,47 +1,44 @@
+# Each work package: two or three plain sentences on what it does (shown on About).
+# Timing and deliverables live in deliverables.yaml (shown on Outputs).
 - id: WP1
   title: Project management and coordination
   leads: [wu]
-  summary: Coordination, data management, the consortium agreement, plenary meetings and reporting to the funders.
-  tasks:
-    - { id: T1.1, title: General coordination, project management and administration, start: Y1Q1, end: Y3Q4 }
-    - { id: T1.2, title: Consortium agreement and risk assessment, start: Y1Q1, end: Y1Q2 }
-    - { id: T1.3, title: Plenary meetings and reporting, start: Y1Q1, end: Y3Q4 }
+  summary: >-
+    Wageningen University & Research coordinates the project: day-to-day management, the data
+    management plan and the consortium agreement. It also runs the plenary meetings and the
+    reporting to the funders.
 - id: WP2
   title: Performance evaluation of existing MAR sites
   leads: [su, uwc]
-  summary: How well each site stores, recovers and cleans water today, and where it can improve.
-  tasks:
-    - { id: T2.1, title: Data collection and site work definition, start: Y1Q1, end: Y1Q4 }
-    - { id: T2.2, title: Hydrological and water quality assessment, start: Y1Q1, end: Y1Q4 }
+  summary: >-
+    Before changing anything, we measure how well each site works today: how much water it
+    stores and gives back, and how much of each contaminant it removes. The result is a profile
+    of every site and a comparison across all six.
 - id: WP3
   title: Monitoring and installation of additional equipment
   leads: [iot, vub]
-  summary: Multi-level piezometers, site-specific sampling for emerging contaminants, and low-cost IoT sensors compared with conventional measurements.
-  tasks:
-    - { id: T3.1, title: Installation of additional monitoring equipment and infrastructure, start: Y1Q2, end: Y2Q2 }
-    - { id: T3.2, title: Development of the CEC sampling plan, start: Y1Q2, end: Y2Q2 }
-    - { id: T3.3, title: Regular hydrogeochemical monitoring, start: Y1Q3, end: Y2Q4 }
+  summary: >-
+    Many recharge sites cannot yet see what happens to contaminants underground. We install
+    monitoring wells where they are needed, sample for emerging contaminants and microbes, and
+    test low-cost sensors against conventional measurements.
 - id: WP4
   title: Predictive models for MAR systems
   leads: [unipd]
-  summary: Flow and reactive transport models of each site, used to test management and design scenarios.
-  tasks:
-    - { id: T4.1, title: Development of flow models, start: Y1Q4, end: Y3Q1 }
-    - { id: T4.2, title: Reactive transport modelling, start: Y2Q1, end: Y3Q2 }
-    - { id: T4.3, title: Scenario analysis and model-based decision support, start: Y2Q2, end: Y3Q4 }
+  summary: >-
+    Computer models of water flow and contaminant transport show how much recharged water each
+    site recovers and what happens to pollutants on the way. The models then let us test
+    management options and designs, including how sites cope with drought.
 - id: WP5
   title: Optimising MAR systems for storage and treatment
   leads: [upc]
-  summary: Design and operating changes tested in the lab and at pilot scale, then shared across sites.
-  tasks:
-    - { id: T5.1, title: Identification of optimisation opportunities, start: Y1Q3, end: Y2Q3 }
-    - { id: T5.2, title: Pilot-scale testing of optimised designs, start: Y2Q1, end: Y3Q1 }
-    - { id: T5.3, title: Cross-site learning and recommendations, start: Y2Q4, end: Y3Q4 }
+  summary: >-
+    Promising changes to how sites are built and run are tested in the lab and at pilot scale,
+    such as permeable reactive materials or a different timing of infiltration. What works at
+    one site is turned into guidelines for the others.
 - id: WP6
   title: Knowledge use, stakeholder engagement and policy
   leads: [inat]
-  summary: Workshops with MAR operators and regulators, open-access publications, and this website.
-  tasks:
-    - { id: T6.1, title: Stakeholder co-creation workshops, start: Y1Q2, end: Y3Q2 }
-    - { id: T6.2, title: Scientific dissemination and open-access publishing, start: Y2Q1, end: Y3Q4 }
-    - { id: T6.3, title: Project website and social media, start: Y1Q1, end: Y3Q4 }
+  summary: >-
+    Results go to the people who run and regulate recharge sites, through workshops in every
+    country, open-access publications and this website. The aim is practical guidance and
+    evidence that can shape policy.

@@ -8,7 +8,7 @@ def bundle(site, html, path):
 
 def test_home_bundle_has_its_bricks_only(site, html):
     css = bundle(site, html, "/")
-    assert "section.hero" in css and "section.transect" in css and "ul.partnerstrip" in css
+    assert "section.hero" in css and "section.sitesmap" in css and "ul.partnerstrip" in css
     assert "carttotal" not in css and "section.prices" not in css and "section.checkout" not in css
 
 
@@ -21,6 +21,5 @@ def test_post_bundle_has_post_brick(site, html):
     assert "section.post" in bundle(site, html, "/news/website-launched/")
 
 
-def test_about_bundle_has_timeline_and_workpackages(site, html):
-    css = bundle(site, html, "/about/")
-    assert ".timeline-grid" in css and "details.wp" in css
+def test_about_bundle_has_workpackages(site, html):
+    assert "details.wp" in bundle(site, html, "/about/")

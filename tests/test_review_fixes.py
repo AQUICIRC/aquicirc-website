@@ -35,11 +35,3 @@ def test_no_placeholder_social_links(html):
 def test_inactive_tab_panels_render_with_tabindex_minus_one(html):
     panels = html("/outputs/").select(".tabs [role=tabpanel]")
     assert [p["tabindex"] for p in panels] == ["0", "-1", "-1", "-1"]
-
-
-def test_latitude_outside_the_plot_fails_build(build_variant):
-    def swap(root):
-        p = root / "content/en/sites/lieshout.md"
-        p.write_text(p.read_text().replace("[[51.52, 5.60]]", "[[5.60, 51.52]]"))
-    result = build_variant(swap)
-    assert result.returncode != 0 and "latitude" in result.stderr

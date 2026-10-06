@@ -27,9 +27,12 @@ apply.
 - Agreed sitemap: Home · About · Case studies (one page per site) · Consortium · News ·
   Outputs; funding acknowledgement in the footer. Dashboard and serious game not in nav
   until they exist.
-- Proposed visual direction (not yet built): logo-derived palette (navy #0F2A3F, flow
-  blue #2471A1, cyan #32B8D9, pore-water #EAF4F7, sediment #C9B38A), Archivo headings +
-  Source Serif 4 body, signature north–south site transect, strata-band motif.
+- Visual direction (built): logo-derived palette (navy #0F2A3F, flow blue #2471A1, cyan
+  #32B8D9, pore-water #EAF4F7, sediment #C9B38A), Archivo headings + Source Serif 4 body,
+  strata-band motif. The north–south transect was dropped after the owner's preview in
+  favour of an OpenStreetMap map of all sites (`sitesmap` brick, loads after `load` when
+  near view; owner accepted the OpenStreetMap request without a click). No Gantt timeline;
+  work packages are short summaries. Spec revision 3 records this.
 
 ## Never commit
 `.env*`, `aquicirc gmail com Za.txt` (account credentials), the grant proposal PDF and

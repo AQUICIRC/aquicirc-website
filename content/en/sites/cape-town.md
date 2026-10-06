@@ -1,5 +1,6 @@
 ---
 title: Atlantis & Cape Flats
+teaser: "Atlantis has recharged through infiltration basins for 40 years; Cape Flats plans to inject treated effluent directly."
 country: South Africa
 location: Western Cape
 coordinates: [[-33.57, 18.49], [-34.03, 18.55]]   # TODO(content): confirm with SU/UWC

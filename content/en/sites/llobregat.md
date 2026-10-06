@@ -1,5 +1,6 @@
 ---
 title: Llobregat river basin
+teaser: "Infiltration basins with fifty years of history test permeable materials that remove more contaminants."
 country: Spain
 location: South of Barcelona
 coordinates: [[41.38, 2.02]]   # TODO(content): confirm with UPC
