@@ -8,7 +8,7 @@ def test_home_hero_carries_the_about_opener_and_two_buttons(html):
     hero = html("/").select_one("main section.hero")
     assert hero.find("h1").get_text(strip=True) == "Recharging aquifers with water we used to waste"
     buttons = [(a.get_text(strip=True), a["href"]) for a in hero.select("a.button")]
-    assert buttons == [("See the six sites", "/sites/"), ("See outputs", "/outputs/")]
+    assert buttons == [("See the six sites", "/sites/"), ("See our outputs", "/outputs/")]
 
 
 def test_about_has_its_own_opener(html):
