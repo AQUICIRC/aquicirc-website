@@ -11,7 +11,7 @@ Managed aquifer recharge puts water back into the ground on purpose, where it is
 
 AQUICIRC asks how to recharge these waters safely: how much water the aquifer stores and gives back, and how much of each contaminant it removes on the way.
 
-[See the six sites](/sites/){:.button} [See outputs](/outputs/){:.button .ghost}
+[See the six sites](/sites/){:.button} [See our outputs](/outputs/){:.button .ghost}
 
 ---
 
