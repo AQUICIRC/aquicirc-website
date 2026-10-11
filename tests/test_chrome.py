@@ -25,3 +25,18 @@ def test_contact_email_slot_renders_when_set(build_variant, tmp_path):
 def test_no_content_markers_rendered(site):
     for page in site.rglob("*.html"):
         assert "TODO(content)" not in page.read_text(encoding="utf-8"), page.relative_to(site)
+
+
+def test_funders_panel_logos(html):
+    panel = html("/news/").select_one("footer .funders-panel")
+    imgs = panel.select("ul.funders img")
+    assert imgs[0]["alt"] == "Co-funded by the European Union"
+    assert len(imgs) == 8
+    for img in imgs:
+        assert img["alt"] and img["src"].endswith((".webp", ".svg")), img["src"]
+        # One height for all: the EU emblem is never smaller, and NWO's minimum is 57 px.
+        assert img["height"] == "64", img["src"]
+
+
+def test_no_empty_colophon(html):
+    assert html("/").select_one("footer .colophon") is None

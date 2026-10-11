@@ -25,3 +25,17 @@ def test_team_empty_state(html):
 def test_partner_strip_on_home(html):
     strip = html("/").select_one("ul.partnerstrip")
     assert len(strip.find_all("li")) == 10
+
+
+def test_partner_logos_are_sized_webp_or_svg(html):
+    for page, sel in (("/", "ul.partnerstrip img"), ("/consortium/", "section.partners img")):
+        imgs = html(page).select(sel)
+        assert imgs, page
+        for img in imgs:
+            assert img["src"].endswith((".webp", ".svg")), img["src"]
+            assert int(img["width"]) > 0 and int(img["height"]) > 0, img["src"]
+
+
+def test_io_things_links_to_its_site(html):
+    link = html("/consortium/").select_one("#partner-iot .partner-name a")
+    assert link["href"].startswith("https://www.io-things.eu/")

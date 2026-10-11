@@ -24,6 +24,27 @@
 {{- end -}}
 <footer class="sitefooter{{ if $dark }} dark{{ end }}">
 
+    {{- /* AQUICIRC: the funding statement and funder logos sit on a white panel
+      above the footer proper, whatever the footer's colour: the logos are full
+      colour and NWO's may only be shown on white. A static row, not a
+      carousel, so the EU emblem is always as visible as the other logos. */}}
+    {{ if or $d.footer.footer_text $d.footer.funders }}
+    <section class="funders-panel" aria-labelledby="funders-title">
+        <div class="container">
+            <h2 id="funders-title">Funding</h2>
+            {{ with $d.footer.footer_text }}<div class="funding">{{ . | markdownify }}</div>{{ end }}
+            {{ with $d.footer.funders }}
+            <ul class="funders">
+                {{- range . -}}
+                {{- $img := partial "logo-img.html" (dict "Src" .logo "Height" 64 "Alt" .name) -}}
+                <li>{{ with .url }}<a href="{{ . }}" rel="noopener">{{ $img }}</a>{{ else }}{{ $img }}{{ end }}</li>
+                {{- end -}}
+            </ul>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
     <div class="container">
         {{ partial "site/logo.html" (dict "Page" . "Logo" (or $d.footer.logo_image $s.favicon_image)) }}
 
@@ -36,18 +57,16 @@
         {{ partial "site/socials.html" . }}
     </div>
 
+    {{- /* AQUICIRC: no empty bordered band when there is neither an email nor a second language. */ -}}
+    {{- $switch := partial "site/languageswitch.html" (dict "Page" . "Label" "Change language") -}}
+    {{- if or $d.general.contact.email (trim $switch " \n\t") }}
     <div class="colophon">
         <div class="container">
             {{ with $d.general.contact.email }}<p class="contact"><a href="mailto:{{ . }}">{{ . }}</a></p>{{ end }}
-            {{ with $d.footer.footer_text }}<div class="funding">{{ . | markdownify }}</div>{{ end }}
-            <ul class="funders" aria-label="Funders">
-                {{- range $d.footer.funders -}}
-                <li><a href="{{ .url }}" rel="noopener"><img src="{{ .logo }}" alt="{{ .name }}" height="48" loading="lazy"></a></li>
-                {{- end -}}
-            </ul>
 
-            {{ partial "site/languageswitch.html" (dict "Page" . "Label" "Change language") }}
+            {{ $switch }}
         </div>
     </div>
+    {{- end }}
 
 </footer>
