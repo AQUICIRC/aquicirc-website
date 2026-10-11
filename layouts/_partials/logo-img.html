@@ -1,0 +1,25 @@
+{{- /*
+  AQUICIRC: a partner or funder logo at a fixed CSS height. A raster file is
+  served as a webp at twice that height; an SVG as it is. Width and height are
+  always emitted (an SVG's from its viewBox), so a row of logos does not shift
+  while they load.
+
+  @context {dict} . Src (path under static/), Height (CSS px), Alt
+*/ -}}
+{{- $src := .Src -}}
+{{- $h := .Height -}}
+{{- $w := 0 -}}
+{{- with resources.GetMatch (strings.TrimPrefix "/" .Src) -}}
+    {{- if in (slice "png" "jpg" "jpeg" "webp") .MediaType.SubType -}}
+        {{- $img := .Resize (printf "x%d webp q90 drawing" (mul $h 2)) -}}
+        {{- $src = $img.RelPermalink -}}
+        {{- $w = math.Round (div (mul (float $img.Width) $h) $img.Height) -}}
+    {{- else if eq .MediaType.SubType "svg" -}}
+        {{- with findRESubmatch `viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)` .Content 1 -}}
+            {{- $vb := index . 0 -}}
+            {{- $w = math.Round (div (mul (float (index $vb 1)) $h) (float (index $vb 2))) -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- if not $w -}}{{- errorf "logo-img: cannot size %q (needs a raster file or an SVG with a viewBox)" .Src -}}{{- end -}}
+<img src="{{ $src }}" alt="{{ .Alt }}" width="{{ int $w }}" height="{{ $h }}" loading="lazy">

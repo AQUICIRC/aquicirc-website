@@ -67,3 +67,19 @@ def test_people_groups_and_affiliations():
         assert person["group"] in {"team", "advisory"}, person["name"]
         if person.get("affiliation"):
             assert person["affiliation"] in partners, person["name"]
+
+
+def test_partner_and_funder_logos_exist():
+    footer = yaml.safe_load((ROOT / "data/en/footer.yaml").read_text())
+    for row in [*load("partners"), *footer["funders"]]:
+        if row.get("logo"):
+            assert (ROOT / "static" / row["logo"].lstrip("/")).is_file(), row["logo"]
+
+
+def test_funders_lead_with_the_eu_emblem_and_include_the_confirmed_agencies():
+    funders = yaml.safe_load((ROOT / "data/en/footer.yaml").read_text())["funders"]
+    assert funders[0]["name"] == "Co-funded by the European Union"
+    names = " ".join(f["name"] for f in funders)
+    assert "NWO" in names and "VLAIO" in names and "Water4All" in names
+    vlaio = next(f for f in funders if "VLAIO" in f["name"])
+    assert vlaio["url"].startswith("https://www.vlaio.be")  # VLAIO's logo rules require the link

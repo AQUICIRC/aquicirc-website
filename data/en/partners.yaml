@@ -3,7 +3,7 @@
   short: WUR
   country: Netherlands
   url: https://www.wur.nl/
-  logo: ""            # TODO(content): partner logo (SVG preferred)
+  logo: /uploads/partners/wu.svg
   role: coordinator
   wps: [WP1]
 - id: su
@@ -11,7 +11,7 @@
   short: SU
   country: South Africa
   url: https://www.sun.ac.za/
-  logo: ""            # TODO(content): partner logo
+  logo: ""            # TODO(content): SU's public colour logo is a padded social PNG; ask SU for the light-background file
   role: wp-lead
   wps: [WP2]
 - id: uwc
@@ -19,15 +19,15 @@
   short: UWC
   country: South Africa
   url: https://www.uwc.ac.za/
-  logo: ""            # TODO(content): partner logo
+  logo: /uploads/partners/uwc.png
   role: wp-lead
   wps: [WP2]
 - id: iot
   name: Io-Things
   short: IoT
   country: Belgium
-  url: ""             # TODO(content): Io-Things website
-  logo: ""            # TODO(content): partner logo
+  url: https://www.io-things.eu/en_GB
+  logo: /uploads/partners/iot.png
   role: wp-lead
   wps: [WP3]
 - id: vub
@@ -35,7 +35,7 @@
   short: VUB
   country: Belgium
   url: https://www.vub.be/
-  logo: ""            # TODO(content): partner logo
+  logo: /uploads/partners/vub.svg
   role: wp-lead
   wps: [WP3]
 - id: unipd
@@ -43,7 +43,7 @@
   short: UNIPD
   country: Italy
   url: https://www.unipd.it/
-  logo: ""            # TODO(content): partner logo
+  logo: /uploads/partners/unipd.png
   role: wp-lead
   wps: [WP4]
 - id: upc
@@ -51,15 +51,15 @@
   short: UPC
   country: Spain
   url: https://www.upc.edu/
-  logo: ""            # TODO(content): partner logo
+  logo: /uploads/partners/upc.svg
   role: wp-lead
   wps: [WP5]
 - id: inat
   name: National Agronomic Institute of Tunisia
   short: INAT
   country: Tunisia
-  url: ""             # TODO(content): INAT website
-  logo: ""            # TODO(content): partner logo
+  url: http://www.inat.tn/   # https does not answer
+  logo: ""            # TODO(content): no logo file online; ask INAT
   role: wp-lead
   wps: [WP6]
 - id: csir
@@ -67,14 +67,14 @@
   short: CSIR
   country: South Africa
   url: https://www.csir.co.za/
-  logo: ""            # TODO(content): partner logo
+  logo: ""            # TODO(content): CSIR's public vector is for dark backgrounds; ask CSIR for a light-background file
   role: partner
   wps: []
 - id: umvoto
   name: Umvoto
   short: Umvoto
   country: South Africa
-  url: ""             # TODO(content): Umvoto website
-  logo: ""            # TODO(content): partner logo
+  url: https://www.umvoto.com/
+  logo: ""            # TODO(content): only a white-matted JPG online; ask Umvoto for an SVG or transparent PNG
   role: partner
   wps: []

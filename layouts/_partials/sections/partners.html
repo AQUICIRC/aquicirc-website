@@ -19,7 +19,7 @@
       <ul>
         {{- range where $partners "country" $country -}}
         <li id="partner-{{ .id }}">
-          {{ with .logo }}<img src="{{ . }}" alt="" height="48" loading="lazy">{{ end }}
+          {{ with .logo }}{{ partial "logo-img.html" (dict "Src" . "Height" 48 "Alt" "") }}{{ end }}
           <p class="partner-name">{{ with .url }}<a href="{{ . }}" rel="noopener">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</p>
           <p class="partner-role">{{ index $roles .role }}{{ with .wps }}, {{ delimit . ", " }}{{ end }}</p>
         </li>

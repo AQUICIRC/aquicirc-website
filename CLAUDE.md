@@ -33,6 +33,12 @@ apply.
   favour of an OpenStreetMap map of all sites (`sitesmap` brick, loads after `load` when
   near view; owner accepted the OpenStreetMap request without a click). No Gantt timeline;
   work packages are short summaries. Spec revision 3 records this.
+- Logos: partner files in `static/uploads/partners/`, funder files in `static/uploads/funders/`,
+  taken from each organisation's own site or brand page (never logo-aggregator sites). Heavy
+  SVGs and large rasters were rendered to 256 px-tall, trimmed PNGs; `_partials/logo-img.html`
+  serves rasters as webp and SVGs as they are. Funders (EU emblem, Water4All, NWO, VLAIO, MUR,
+  DSTI, AEI, MHESR, as Water4All's AQUICIRC page lists them) sit on a white panel at the top
+  of the footer, all at one 4rem height (EU emblem never smaller; NWO minimum 57 px).
 
 ## Never commit
 `.env*`, `aquicirc gmail com Za.txt` (account credentials), the grant proposal PDF and
@@ -57,7 +63,7 @@ would be required for core functionality, redesign instead.
 - `layouts/_partials/site/styles.html`: bundles `css/aquicirc.css`.
 - `layouts/baseof.html`: Archivo preload, `<link rel="expect" href="#main" blocking="render">`.
 - `data/settings.yaml`: `intersectionobserver: false`.
-- `layouts/_partials/site/footer.html`: contact email, funding statement wrapper + `funders` logo list from `data/en/footer.yaml`.
+- `layouts/_partials/site/footer.html`: contact email; white funders panel (funding statement + `funders` logos from `data/en/footer.yaml`) at the top; colophon omitted when empty.
 - `static/css/sections/features.css`: feature cards left-aligned (was centred).
 - `static/js/site.js`: Escape dismissal for `[data-reveal]` hosts.
 - `static/css/sections/intro.css`: page openers left-aligned on the wide column (was centred, small).

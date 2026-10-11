@@ -7,4 +7,32 @@ socials: []
 # TODO(content): exact funding statement and grant number.
 footer_text: >-
   AQUICIRC is funded through the Water4All partnership, co-funded by the European Union.
-funders: []   # TODO(content): {name, logo, url} for Water4All, the EU emblem and national agencies
+# The funders panel above the footer: the EU emblem, Water4All, then the national funding
+# organisations as Water4All lists them for AQUICIRC
+# (https://www.water4all-partnership.eu/project/aquicirc). `logo` is a file under static/;
+# rasters become a webp, SVGs need a viewBox. `url` is optional.
+# Rules: the EU emblem is never smaller than the other logos and stays separate from
+# them; NWO's logo is at least 57 px tall; VLAIO's links to vlaio.be.
+funders:
+  - name: Co-funded by the European Union
+    logo: /uploads/funders/eu-cofunded.png
+  - name: Water4All Partnership
+    logo: /uploads/funders/water4all.png   # TODO(content): traced from a Water4All PDF; ask Water4All for the official file
+    url: https://www.water4all-partnership.eu/project/aquicirc
+  - name: Dutch Research Council (NWO)
+    logo: /uploads/funders/nwo.svg
+    url: https://www.nwo.nl/en
+  - name: Flanders Innovation & Entrepreneurship (VLAIO)
+    logo: /uploads/funders/vlaio.svg
+    url: https://www.vlaio.be/
+  - name: Italian Ministry of University and Research (MUR)
+    logo: /uploads/funders/mur.png         # TODO(content): Wikimedia redraw; ask UNIPD for MUR's official file
+    url: https://www.mur.gov.it/
+  - name: Department of Science, Technology and Innovation, South Africa (DSTI)
+    logo: /uploads/funders/dsti.png
+    url: https://www.dsti.gov.za/
+  - name: Spanish State Research Agency (AEI)
+    logo: /uploads/funders/aei.png         # TODO(content): MICIU + AEI lockup; UPC to confirm the version AEI wants
+    url: https://www.aei.gob.es/
+  - name: Tunisian Ministry of Higher Education and Scientific Research (MHESR)
+    logo: /uploads/funders/mhesr.png       # TODO(content): low-resolution copy from Water4All; ask INAT for the file

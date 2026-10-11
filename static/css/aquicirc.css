@@ -52,9 +52,15 @@ a { color: var(--flow); text-underline-offset: 0.15em; }
 }
 ::view-transition-group(*) { animation-duration: 0.3s; }
 
-.sitefooter .funders { display: flex; flex-wrap: wrap; gap: 1.5rem; list-style: none; padding: 0; margin: 1rem 0 0; }
-.sitefooter .funders:empty { display: none; }
-.sitefooter .funders img { height: 3rem; width: auto; }
+/* Funders panel: white whatever the footer's colour (NWO's logo is shown on white only).
+   One height for every logo, so the EU emblem is never smaller than another; 4rem clears
+   NWO's 57 px minimum. */
+.funders-panel { background: var(--page); color: var(--textMedium); border-block-start: 1px solid var(--borderLight); padding-block: 2.5rem; }
+.funders-panel h2 { font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--textDark); margin: 0 0 0.5rem; }
+.funders-panel .funding > :last-child { margin-block-end: 0; }
+.funders-panel .funders { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.funders-panel .funders a { display: block; }
+.funders-panel .funders img { display: block; height: 4rem; width: auto; max-width: 100%; }
 
 /* The logo is full colour: never invert it on dark chrome (v2 assumes a monochrome logo). */
 .sitefooter.dark .logo img, .siteheader.dark .logo img { filter: none; }
