@@ -87,6 +87,9 @@
 
             <nav id="mainnav" class="mainnav" aria-label="{{ i18n "Main" }}">
                 {{ partial "site/menu.html" (dict "Page" . "Items" $d.header.menuitems) }}
+                {{- /* AQUICIRC: the header button is hidden on narrow phones (header.css), so it is
+                       repeated at the foot of the menu panel, shown only there. */}}
+                {{ if $d.header.cta.active }}<p class="menu-cta"><a href="{{ $d.header.cta.link }}">{{ $d.header.cta.title }}</a></p>{{ end }}
             </nav>
 
             <div class="actions">

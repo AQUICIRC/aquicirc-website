@@ -54,3 +54,17 @@ def test_no_js_points_to_email(browser, served):
     page.goto(f"{served}/contact/")
     assert page.locator("#contactform a[href='mailto:aquicirc@gmail.com']").is_visible()
     context.close()
+
+
+def test_contact_reachable_from_header_at_every_width(browser, served):
+    for width, where in ((1280, ".actions .button"), (390, ".menu-cta a")):
+        page = browser.new_page(viewport={"width": width, "height": 800})
+        page.route("https://js.hcaptcha.com/**", lambda route: route.abort())
+        page.goto(f"{served}/about/")
+        if page.locator("#togglemenu").is_visible():
+            page.click("#togglemenu")
+        link = page.locator(f"header {where}")
+        link.wait_for(state="visible")
+        link.click()
+        page.wait_for_url(f"{served}/contact/")
+        page.close()

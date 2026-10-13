@@ -137,3 +137,11 @@ ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }
    box sits on the first line rather than the middle; the captcha message reads as an error. */
 form .checkbox label { align-items: baseline; }
 form .captcha-error { margin: 0.5rem 0 0; color: #A4262C; font-size: 0.95rem; }
+
+/* The header's Contact button, repeated in the phone menu panel where the button itself is
+   hidden (header.css hides `.actions .button` below 500px). Styled as the panel's links. */
+.mainnav .menu-cta { display: none; margin: 0; }
+@media (max-width: 500px) {
+    body.mobilemenu .mainnav .menu-cta { display: block; }
+    body.mobilemenu .mainnav .menu-cta a { display: block; text-decoration: none; }
+}
