@@ -1,5 +1,6 @@
 logo_image: /uploads/branding/aquicirc-logo.png
-menuitems: []
+menuitems:
+  - { title: Contact, link: /contact/ }
 # TODO(content): add the AQUICIRC LinkedIn and Bluesky profiles once they exist, e.g.
 #   - { title: LinkedIn, link: "https://www.linkedin.com/company/…", logo_image: /img/linkedin.svg }
 #   - { title: Bluesky, link: "https://bsky.app/profile/…", logo_image: /img/bluesky.svg }

@@ -257,3 +257,23 @@
         widget.classList.add("ready");
     });
 })();
+
+/* AQUICIRC: a form carrying an hCaptcha widget (`site/form.html`) is not sent
+   until the captcha has been passed. The endpoint would refuse it anyway, but
+   on its own page; this keeps the visitor on the form with a message beside
+   the captcha. hCaptcha writes its token into `h-captcha-response`. */
+(function () {
+    document.querySelectorAll("form .h-captcha").forEach(function (widget) {
+        var form = widget.closest("form");
+        var error = form.querySelector(".captcha-error");
+        form.addEventListener("submit", function (event) {
+            var token = form.querySelector("[name='h-captcha-response']");
+            if (token && token.value) {
+                error.hidden = true;
+                return;
+            }
+            event.preventDefault();
+            error.hidden = false;
+        });
+    });
+})();

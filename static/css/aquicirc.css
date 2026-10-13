@@ -132,3 +132,8 @@ ul.partnerstrip a:is(:hover, :focus-visible) img { filter: none; }
 }
 .leaflet-container .map-hint.shown { opacity: 1; }
 @media (prefers-reduced-motion: no-preference) { .leaflet-container .map-hint { transition: opacity 0.2s ease; } }
+
+/* Contact form (layouts/_partials/site/form.html): a long consent label wraps, so its
+   box sits on the first line rather than the middle; the captcha message reads as an error. */
+form .checkbox label { align-items: baseline; }
+form .captcha-error { margin: 0.5rem 0 0; color: #A4262C; font-size: 0.95rem; }
