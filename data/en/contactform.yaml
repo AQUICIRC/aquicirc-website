@@ -1,0 +1,49 @@
+# The contact form on /contact/, rendered by the `contactform` shortcode through
+# layouts/_partials/site/form.html. It posts to Web3Forms (https://web3forms.com),
+# which emails each message to aquicirc@gmail.com, the address the key was issued for.
+action: https://api.web3forms.com/submit
+# Sent with every message, unseen. The access key is public by design: Web3Forms only
+# delivers to the address it was issued for. To retire a leaked or abused key, create a
+# new one in the Web3Forms dashboard and replace it here.
+hidden:
+  access_key: 0c42e6c0-aa0b-4709-b339-1075e9255a74
+  subject: "AQUICIRC website: new message"
+# Where the visitor lands after sending (made absolute at build time; the free plan only
+# redirects within the site's own domain).
+redirect: /contact/thanks/
+# Spam guards. `honeypot` is the hidden checkbox Web3Forms rejects when ticked.
+# `captcha_sitekey` adds hCaptcha with the site key Web3Forms shares among free-plan forms
+# (its docs: getting-started/customizations/spam-protection/hcaptcha). hCaptcha is also
+# switched on for this form in the Web3Forms dashboard, which makes it required on every
+# message, so the form cannot be sent without JavaScript; `noscript` is shown instead.
+honeypot: botcheck
+captcha_sitekey: 50b2fe65-b00b-4b9e-ad62-3ba471098be2
+noscript: >-
+  This form needs JavaScript for its spam check. Without it, write to us at
+  [aquicirc@gmail.com](mailto:aquicirc@gmail.com).
+placeholders: false
+fields:
+  - input_type: html
+    label: Send us a message
+  - name: name
+    input_type: text
+    label: Name
+    required: true
+  - name: email
+    input_type: email
+    label: Email
+    required: true
+  - name: organisation
+    input_type: text
+    label: Organisation
+  - name: message
+    input_type: textarea
+    label: Message
+    required: true
+  - name: consent
+    input_type: checkbox
+    label: I agree that my message is sent to the AQUICIRC team through Web3Forms, checked for spam by hCaptcha, and used only to reply to me.
+    required: true
+  - name: submit
+    input_type: submit
+    label: Send message

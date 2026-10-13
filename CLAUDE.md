@@ -40,6 +40,16 @@ apply.
   DSTI, AEI, MHESR, as Water4All's AQUICIRC page lists them) sit on a white panel at the top
   of the footer, all at one 4rem height (EU emblem never smaller; NWO minimum 57 px).
 
+## Contact form
+- `/contact/` posts to **Web3Forms** (free plan, 250 messages/month), which emails
+  aquicirc@gmail.com. Config in `data/en/contactform.yaml`; the access key is public by design
+  (delivers only to the address it was issued for) — to retire it, issue a new one in the dashboard.
+- Spam guards: `botcheck` honeypot, Web3Forms filtering, hCaptcha (Web3Forms' shared free-plan
+  site key, loaded straight from js.hcaptcha.com, not through their `client/script.js` wrapper;
+  also switched on in the Web3Forms dashboard, so it is required). Without JS the form shows a
+  note pointing to the email address. Success redirects to `/contact/thanks/` (noindex, not in
+  the sitemap). The footer email and the footer "Contact" link are the fallback.
+
 ## Never commit
 `.env*`, `aquicirc gmail com Za.txt` (account credentials), the grant proposal PDF and
 other root-level PDFs — all gitignored.
@@ -85,3 +95,6 @@ would be required for core functionality, redesign instead.
 - `data/settings.yaml`: `favicon_image` removed (it shipped the 139 kB logo as favicon).
 - `static/css/sections/transect.css` etc. are AQUICIRC files, not upstream.
 - Post front matter uses `case_sites`; Archivo is pinned by `scripts/instance-archivo.py`.
+- `layouts/_partials/site/form.html`: optional `hidden` fields, absolute `redirect`, configurable `honeypot` name (now a checkbox), and an hCaptcha widget + script from `captcha_sitekey` with a `noscript` fallback; the script sits inside the form because the `contact` brick moves everything else into `<address>`.
+- `static/js/site.js`: a form with an hCaptcha widget is not submitted until the captcha has been passed.
+- `layouts/baseof.html`: `noindex: true` front matter emits `<meta name="robots" content="noindex">`.

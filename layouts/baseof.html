@@ -9,6 +9,8 @@
     <title>{{ with .Params.seo.title }}{{ . }}{{ else }}{{ .Title | safeHTML }} | {{ $d.general.title }}{{ end }}</title>
     <meta name="description" content="{{ if .Summary }}{{ substr (htmlUnescape (.Summary | plainify)) 0 160 }}{{ else }}{{ substr $d.general.description 0 160 }}{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    {{- /* AQUICIRC: `noindex: true` in front matter keeps a page (the contact thank-you page) out of search results. */}}
+    {{ if .Params.noindex }}<meta name="robots" content="noindex">{{ end }}
     {{ partial "site/favicon.html" . }}
     <link rel="preload" href="/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>

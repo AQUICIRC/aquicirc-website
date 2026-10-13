@@ -13,13 +13,8 @@ def test_footer_has_funding_statement_and_funders_slot(html):
     assert footer.select_one(".funders") is not None
 
 
-def test_contact_email_slot_renders_when_set(build_variant, tmp_path):
-    def set_email(root):
-        p = root / "data/en/general.yaml"
-        p.write_text(p.read_text().replace('email: ""', "email: info@example.org"))
-    assert build_variant(set_email).returncode == 0
-    assert 'href="mailto:info@example.org"' in (tmp_path / "out/index.html").read_text()
-
+def test_colophon_carries_contact_email(html):
+    assert html("/").select_one("footer .colophon a[href='mailto:aquicirc@gmail.com']")
 
 
 def test_no_content_markers_rendered(site):
@@ -38,5 +33,9 @@ def test_funders_panel_logos(html):
         assert img["height"] == "64", img["src"]
 
 
-def test_no_empty_colophon(html):
-    assert html("/").select_one("footer .colophon") is None
+def test_no_empty_colophon_without_email(build_variant, tmp_path):
+    def clear_email(root):
+        p = root / "data/en/general.yaml"
+        p.write_text(p.read_text().replace("email: aquicirc@gmail.com", 'email: ""'))
+    assert build_variant(clear_email).returncode == 0
+    assert 'class="colophon"' not in (tmp_path / "out/index.html").read_text()
