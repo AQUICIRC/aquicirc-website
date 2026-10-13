@@ -54,3 +54,10 @@ def test_captcha_script_only_on_the_contact_page(site):
 def test_footer_links_to_contact(html):
     footer = html("/").find("footer")
     assert footer.find("a", href="/contact/")
+
+
+def test_header_contact_button(html):
+    header = html("/news/").find("header")
+    assert header.select_one(".actions a.button[href='/contact/']").get_text(strip=True) == "Contact"
+    # Repeated in the menu panel for phones, where the header button is hidden.
+    assert header.select_one("nav.mainnav .menu-cta a[href='/contact/']")

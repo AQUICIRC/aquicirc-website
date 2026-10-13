@@ -48,7 +48,8 @@ apply.
   site key, loaded straight from js.hcaptcha.com, not through their `client/script.js` wrapper;
   also switched on in the Web3Forms dashboard, so it is required). Without JS the form shows a
   note pointing to the email address. Success redirects to `/contact/thanks/` (noindex, not in
-  the sitemap). The footer email and the footer "Contact" link are the fallback.
+  the sitemap). Reached from the "Contact" header button (in the menu panel on phones) and the
+  footer; the footer email is the fallback.
 
 ## Never commit
 `.env*`, `aquicirc gmail com Za.txt` (account credentials), the grant proposal PDF and
@@ -98,3 +99,4 @@ would be required for core functionality, redesign instead.
 - `layouts/_partials/site/form.html`: optional `hidden` fields, absolute `redirect`, configurable `honeypot` name (now a checkbox), and an hCaptcha widget + script from `captcha_sitekey` with a `noscript` fallback; the script sits inside the form because the `contact` brick moves everything else into `<address>`.
 - `static/js/site.js`: a form with an hCaptcha widget is not submitted until the captcha has been passed.
 - `layouts/baseof.html`: `noindex: true` front matter emits `<meta name="robots" content="noindex">`.
+- `layouts/_partials/site/header.html`: the header button (`header.cta`, now "Contact") is repeated as `.menu-cta` at the foot of the menu panel, shown only below 500px where `header.css` hides the button.

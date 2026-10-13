@@ -8,5 +8,8 @@ menuitems:
   - { title: Consortium, link: /consortium/ }
   - { title: News, link: /news/ }
   - { title: Outputs, link: /outputs/ }
+# The button at the right of the banner, on every page, beside the menu toggle on phones.
 cta:
-  active: false
+  active: true
+  title: Contact
+  link: /contact/
