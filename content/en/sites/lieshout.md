@@ -15,4 +15,4 @@ references:
     doi: 10.1016/j.agwat.2022.107677
 ---
 
-Treated industrial wastewater is being used for subsurface irrigation in agriculture. AQUICIRC measures and models the effect of subirrigation on distribution of salts in the groundwater system.
+Treated industrial wastewater is used for subsurface irrigation in agriculture. AQUICIRC measures and models the effect of subirrigation on distribution of salts in the groundwater system.
