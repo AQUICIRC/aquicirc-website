@@ -83,6 +83,6 @@
   short: KWR
   country: Netherlands
   url: https://www.kwrwater.nl/
-  logo: /uploads/partners/KWR.png            # TODO(content): add KWR's logo from its own brand page (static/uploads/partners/)
+  logo: /uploads/partners/KWR.png
   role: partner
   wps: []
