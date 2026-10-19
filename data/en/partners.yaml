@@ -1,4 +1,4 @@
-- id: wu
+- id: wur
   name: Wageningen University & Research
   short: WUR
   country: Netherlands
@@ -75,6 +75,14 @@
   short: Umvoto
   country: South Africa
   url: https://www.umvoto.com/
+  logo: ""            # TODO(content): only a white-matted JPG online; ask Umvoto for an SVG or transparent PNG
+  role: partner
+  wps: []
+- id: kwr
+  name: KWR Water Research Institute
+  short: KWR
+  country: Netherlands
+  url: https://www.kwrwater.nl/
   logo: ""            # TODO(content): only a white-matted JPG online; ask Umvoto for an SVG or transparent PNG
   role: partner
   wps: []
