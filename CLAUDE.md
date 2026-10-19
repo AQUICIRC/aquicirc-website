@@ -64,6 +64,11 @@ would be required for core functionality, redesign instead.
 `pixi run test` builds the site and checks the HTML (runs in CI before deploy).
 `pixi run test-browser` runs the Playwright behaviour tests locally
 (`pixi run install-browsers` once).
+Tests check that pages render what the content and data files say, never a copy of that
+content: counts, names, slugs and wording partners can edit are read from `content/` and
+`data/` (helpers in `tests/sitedata.py`), so editing a partner, person, site or post never
+breaks CI. Fixed values are kept only for decisions (menu, colours, fonts, contact form,
+funders' logo rules, WP1–WP6 layout).
 
 ## Changes vs upstream Hugobricks v2
 - `hugo.yaml`: Usecue `json` home output removed. `layouts/home.json` deleted.

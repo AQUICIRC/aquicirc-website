@@ -1,4 +1,5 @@
 """Each page ships the core stylesheet plus only the brick CSS it uses (spec §8)."""
+from sitedata import NORTH_TO_SOUTH
 
 
 def bundle(site, html, path):
@@ -13,12 +14,13 @@ def test_home_bundle_has_its_bricks_only(site, html):
 
 
 def test_site_page_bundle_has_site_layout(site, html):
-    css = bundle(site, html, "/sites/kinrooi/")
+    css = bundle(site, html, f"/sites/{NORTH_TO_SOUTH[0]}/")
     assert "dl.facts" in css and "section.hero" not in css
 
 
 def test_post_bundle_has_post_brick(site, html):
-    assert "section.post" in bundle(site, html, "/news/website-launched/")
+    post = html("/news/").select_one("ul.posts a[href^='/news/']:not([href*='?'])")["href"]
+    assert "section.post" in bundle(site, html, post)
 
 
 def test_about_bundle_has_workpackages(site, html):
