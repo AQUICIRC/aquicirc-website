@@ -3,7 +3,7 @@ title: "Lieshout-case"
 teaser: "Treated industrial wastewater is used for subsurface irrigation in agriculture."
 country: Netherlands
 location: Lieshout, North Brabant
-coordinates: [51.52, 5.60] # TODO(content): confirm with WUR
+coordinates: [[51.52, 5.60]] # TODO(content): confirm with WUR
 climate: Temperate, increasing droughts, heavy rainfall
 aquifer: Shallow unconfined, sandy soils
 mar_system: Subsurface irrigation with treated industrial wastewater
