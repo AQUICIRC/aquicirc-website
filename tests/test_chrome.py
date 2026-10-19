@@ -1,3 +1,7 @@
+import yaml
+
+from sitedata import ROOT
+
 MENU = ["About", "Case studies", "Consortium", "News", "Outputs"]
 
 
@@ -26,7 +30,8 @@ def test_funders_panel_logos(html):
     panel = html("/news/").select_one("footer .funders-panel")
     imgs = panel.select("ul.funders img")
     assert imgs[0]["alt"] == "Co-funded by the European Union"
-    assert len(imgs) == 8
+    funders = yaml.safe_load((ROOT / "data/en/footer.yaml").read_text())["funders"]
+    assert len(imgs) == len([f for f in funders if f.get("logo")])
     for img in imgs:
         assert img["alt"] and img["src"].endswith((".webp", ".svg")), img["src"]
         # One height for all: the EU emblem is never smaller, and NWO's minimum is 57 px.

@@ -1,6 +1,4 @@
-from pathlib import Path
-
-import yaml
+from sitedata import data
 
 
 def test_outputs_tabs(html):
@@ -10,18 +8,21 @@ def test_outputs_tabs(html):
 
 def test_deliverables_table(html):
     table = html("/outputs/").select_one("table.deliverables")
-    rows = table.tbody.find_all("tr")
-    assert len(rows) == len(yaml.safe_load((Path(__file__).resolve().parents[1] / "data/en/deliverables.yaml").read_text()))
-    d63 = next(r for r in rows if r.th.get_text(strip=True) == "D6.3")
-    status = d63.select_one(".status")
-    assert status.get_text(strip=True) == "Public" and status.svg["aria-hidden"] == "true"
-    assert d63.find("a", href="https://aquicirc.eu/")
+    rows = {r.th.get_text(strip=True): r for r in table.tbody.find_all("tr")}
+    deliverables = data("deliverables")
+    assert list(rows) == [d["id"] for d in deliverables]
+    for d in deliverables:
+        if d["status"] == "public":
+            status = rows[d["id"]].select_one(".status")
+            assert status.get_text(strip=True) == "Public" and status.svg["aria-hidden"] == "true"
+            assert rows[d["id"]].find("a", href=d["url"]), d["id"]
 
 
 def test_empty_states(html):
     doc = html("/outputs/")
-    assert "No publications yet" in doc.get_text()
-    assert "No datasets or models yet" in doc.get_text()
+    assert bool(doc.select_one("ol.publications")) == bool(data("publications"))
+    assert bool(doc.select_one("ul.datasets")) == bool(data("datasets"))
+    assert len(doc.select(".tabs .empty")) == (not data("publications")) + (not data("datasets"))
 
 
 def test_tabs_render_collapsed_without_waiting_for_js(html):

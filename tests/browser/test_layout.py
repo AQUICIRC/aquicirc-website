@@ -1,6 +1,8 @@
 import pytest
 
-PAGES = ["/", "/about/", "/sites/", "/sites/cape-town/", "/sites/lieshout/", "/consortium/", "/news/", "/outputs/"]
+from sitedata import NORTH_TO_SOUTH
+
+PAGES = ["/", "/about/", "/sites/", *(f"/sites/{s}/" for s in NORTH_TO_SOUTH), "/consortium/", "/news/", "/outputs/", "/contact/"]
 
 
 @pytest.mark.parametrize("path", PAGES)

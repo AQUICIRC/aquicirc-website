@@ -1,30 +1,40 @@
+from sitedata import data
+
+PARTNERS = data("partners")
+COORDINATOR = next(p for p in PARTNERS if p["role"] == "coordinator")
+
+
 def test_partners_grouped_coordinator_country_first(html):
     groups = html("/consortium/").select("section.partners .country")
     names = [g.find("h3").get_text(strip=True) for g in groups]
-    assert names[0] == "Netherlands"
+    assert names[0] == COORDINATOR["country"]
     assert names[1:] == sorted(names[1:])
+    assert set(names) == {p["country"] for p in PARTNERS}
 
 
 def test_partner_anchor_and_role(html):
     doc = html("/consortium/")
-    wu = doc.select_one("#partner-wu")
-    assert "Coordinator" in wu.get_text()
-    assert doc.select_one("#partner-su") is not None
+    assert "Coordinator" in doc.select_one(f"#partner-{COORDINATOR['id']}").get_text()
+    for p in PARTNERS:
+        assert doc.select_one(f"#partner-{p['id']}") is not None, p["id"]
 
 
 def test_team_group_filter(html):
     doc = html("/consortium/")
-    advisory = doc.select_one("section:has(h2#advisory) ul.team")
-    assert [h.get_text(strip=True) for h in advisory.select("h3")] == ["Ricky Murray", "Sarah Garré"]
-
-
-def test_team_empty_state(html):
-    assert html("/consortium/").select_one("section:has(h2#team) .empty")
+    for group in ("advisory", "team"):
+        people = [p["name"] for p in data("people") if p["group"] == group]
+        section = doc.select_one(f"section:has(h2#{group})")
+        if people:
+            assert [h.get_text(strip=True) for h in section.select("ul.team h3")] == people
+        else:
+            assert section.select_one(".empty"), group   # empty state until people are added
 
 
 def test_partner_strip_on_home(html):
+    # One entry per partner in the data file, so adding a partner needs no test change.
     strip = html("/").select_one("ul.partnerstrip")
-    assert len(strip.find_all("li")) == 10
+    hrefs = [a["href"] for a in strip.select("li > a")]
+    assert hrefs == [f"/consortium/#partner-{p['id']}" for p in PARTNERS]
 
 
 def test_partner_logos_are_sized_webp_or_svg(html):
@@ -36,6 +46,11 @@ def test_partner_logos_are_sized_webp_or_svg(html):
             assert int(img["width"]) > 0 and int(img["height"]) > 0, img["src"]
 
 
-def test_io_things_links_to_its_site(html):
-    link = html("/consortium/").select_one("#partner-iot .partner-name a")
-    assert link["href"].startswith("https://www.io-things.eu/")
+def test_partner_names_link_to_their_sites(html):
+    doc = html("/consortium/")
+    for p in PARTNERS:
+        link = doc.select_one(f"#partner-{p['id']} .partner-name a")
+        if p.get("url"):
+            assert link["href"] == p["url"], p["id"]
+        else:
+            assert link is None, p["id"]

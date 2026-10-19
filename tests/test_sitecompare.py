@@ -1,11 +1,15 @@
+from sitedata import SITES
+
+
 def test_compare_table_semantics(html):
     table = html("/sites/").select_one("section.sitecompare table.datatable")
-    assert table.caption.get_text(strip=True) == "The six case-study sites compared"
+    assert table.caption.get_text(strip=True)
     headers = [th.get_text(strip=True) for th in table.thead.find_all("th")]
     assert headers == ["Site", "Country", "Climate", "Aquifer", "MAR system", "Expected contaminants"]
     rows = table.tbody.find_all("tr")
-    assert len(rows) == 6
-    assert rows[0].th["scope"] == "row" and rows[0].th.a["href"] == "/sites/lieshout/"
+    assert len(rows) == len(SITES)
+    assert [r.th.a["href"] for r in rows] == [f"/sites/{s['slug']}/" for s in SITES]
+    assert all(r.th["scope"] == "row" for r in rows)
     frame = table.find_parent("div", class_="datatable-frame")
     assert frame["role"] == "region" and frame["tabindex"] == "0"
     assert frame["aria-labelledby"] == table.caption["id"]

@@ -34,4 +34,4 @@ def test_no_placeholder_social_links(html):
 
 def test_inactive_tab_panels_render_with_tabindex_minus_one(html):
     panels = html("/outputs/").select(".tabs [role=tabpanel]")
-    assert [p["tabindex"] for p in panels] == ["0", "-1", "-1", "-1"]
+    assert [p["tabindex"] for p in panels] == ["0"] + ["-1"] * (len(panels) - 1)
