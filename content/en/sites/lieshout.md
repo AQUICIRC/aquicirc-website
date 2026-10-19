@@ -9,7 +9,7 @@ aquifer: Shallow unconfined, sandy soils
 mar_system: Subsurface irrigation with treated industrial wastewater
 source_water: Treated industrial wastewater
 expected_cecs: [Salts]
-partners: [wur, kwr]
+partners: [wu, kwr]
 references:
   - text: de Wit et al., 2022
     doi: 10.1016/j.agwat.2022.107677
