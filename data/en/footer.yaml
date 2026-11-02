@@ -36,4 +36,4 @@ funders:
     logo: /uploads/funders/aei.png         # TODO(content): MICIU + AEI lockup; UPC to confirm the version AEI wants
     url: https://www.aei.gob.es/
   - name: Tunisian Ministry of Higher Education and Scientific Research (MHESR)
-    logo: /uploads/funders/mhesr.png       # TODO(content): low-resolution copy from Water4All; ask INAT for the file
+    logo: /uploads/funders/mesrs.png       # TODO(content): low-resolution copy from Water4All; ask INAT for the file
