@@ -5,6 +5,8 @@ date: 2026-10-28
 tags: [Project Meetings, Barcelona, Managed Aquifer Recharge]
 ---
 
+![AQUICIRC Consortium Meeting in Barcelona](/img/barcelona-meeting.jpg)
+
 AQUICIRC consortium partners gathered in Barcelona on 26–27 October 2026 to exchange research progress and discuss Managed Aquifer Recharge (MAR) and sustainable groundwater management.
 
 The meeting provided an opportunity for researchers from partner institutions to share knowledge and explore the past, present, and future of Barcelona's water supply.
