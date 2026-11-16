@@ -1,9 +1,12 @@
+
 ---
 title: "AQUICIRC in Tunisia: Field Investigations and Stakeholder Engagement"
 slug: tunisia-field-investigations
 date: 2026-11-11
 tags: [Fieldwork, Tunisia, Managed Aquifer Recharge]
 ---
+
+![AQUICIRC fieldwork in Tunisia](/img/tunisia-fieldwork.jpg)
 
 AQUICIRC researchers Reynold Chow and Victor Bense from Wageningen University & Research visited the Institut National Agronomique de Tunisie (INAT), hosted by Mohamed Fethi Ben Hamouda, to conduct hydrogeophysical investigations along the Wadi of Kurait in Tunisia.
 
@@ -20,4 +23,3 @@ The activities highlighted the importance of combining hydrogeophysical investig
 Special thanks to Mohamed Fethi Ben Hamouda, the INAT team, and all participating stakeholders for their hospitality and valuable contributions.
 
 [View the original LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7526034273343221760/)
-  
