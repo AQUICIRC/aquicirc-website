@@ -1,7 +1,7 @@
 ---
 title: "AQUICIRC in Spain: Sampling Campaign at the Besòs River Basin"
 slug: besos-sampling-campaign
-date: 2026-09-28
+date: 2026-11-25
 tags: [Fieldwork, Spain, Besòs, Managed Aquifer Recharge]
 ---
 
