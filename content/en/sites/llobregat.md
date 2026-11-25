@@ -25,4 +25,4 @@ Fifty years of recharge practice with river water, diverted channels and reclaim
 
 ![Llobregat river basin study site](/img/Llobregat.jpg)
 
-*Llobregat river basin study site, Spain. Photo: UPC.*
+*3D groundwater flow model of the Llobregat river basin, Spain. Source: Carles Pérez Castro, UPC (PhD thesis in progress).*
